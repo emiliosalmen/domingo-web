@@ -50,6 +50,7 @@
   --ancho:1120px;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{margin:0;background:var(--crema);color:var(--tinta);font-family:var(--texto);font-size:20px;line-height:1.55;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -156,6 +157,18 @@ footer .marca img{width:44px}
 .oscuro .versal{color:var(--amarillo)}
 .oscuro .cabeza p{color:#e4dcc6}
 .oscuro .estilos-img{border-radius:6px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+
+.selector{display:grid;gap:14px;margin-bottom:26px}
+.grupo{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center}
+.etiqueta{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--amarillo);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--texto);font-size:17px;background:transparent;border:1.5px solid rgba(248,243,228,.35);color:var(--crema);padding:6px 15px;border-radius:999px;cursor:pointer}
+.chips button:hover{border-color:var(--crema)}
+.chips button[aria-pressed="true"]{background:var(--amarillo);border-color:var(--amarillo);color:var(--tinta)}
+.marco-estilo{box-shadow:0 30px 60px -30px rgba(0,0,0,.6), 8px 8px 0 var(--ocre)}
+.marco-estilo img{transition:opacity .2s;width:100%}
+.pie-estilo{margin-top:22px;font-family:var(--mano);font-size:26px;color:var(--amarillo)}
+@media (max-width:620px){.grupo{grid-template-columns:1fr;gap:6px}}
 .nombres-estilos{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;font-family:var(--titulo);font-size:22px;color:var(--amarillo)}
 
 /* Para quien */
@@ -336,10 +349,15 @@ footer summary{cursor:pointer;color:#d8ccb4}
       <div class="versal">Diez estilos</div>
       <h2>Elige cómo se ve tu estudio</h2>
       <hr class="filete">
-      <p>Cada estilo cambia la app completa, en tema claro y oscuro. Algunos se desbloquean con el uso, según los días que escribes y las palabras que juntas.</p>
+      <p>El mismo manuscrito en los diez estilos de Domingo. Cada estilo cambia la app completa, y varios se desbloquean con el uso, según los días que escribes y las palabras que juntas. Elige una pantalla y un estilo para comparar.</p>
     </div>
-    <img class="estilos-img aparece" src="img/estilos.webp" width="1800" height="766" loading="lazy" alt="Seis estilos visuales de Domingo: Imprenta, Acanthus, Boceto, Aurora, Bauhaus y Japandi.">
-    <div class="nombres-estilos"><span>Clásico</span><span>Imprenta</span><span>Wabi Sabi</span><span>Japandi</span><span>Mid-Century</span><span>Boceto</span><span>Bohemio</span><span>Acanthus</span><span>Aurora</span><span>Bauhaus</span></div>
+    <div class="selector">
+      <div class="grupo"><span class="etiqueta">Pantalla</span><div class="chips" id="sel-pantalla" role="group" aria-label="Pantalla"></div></div>
+      <div class="grupo"><span class="etiqueta">Estilo</span><div class="chips" id="sel-estilo" role="group" aria-label="Estilo"></div></div>
+      <div class="grupo" id="grupo-tono"><span class="etiqueta">Tono</span><div class="chips" id="sel-tono" role="group" aria-label="Tono"></div></div>
+    </div>
+    <div class="ventana marco-estilo"><div class="franja"><i></i><i></i><i></i></div><img id="img-estilo" src="img/estilos/editor-clasico-claro.webp" width="1600" height="1000" alt=""></div>
+    <p class="pie-estilo" id="pie-estilo"></p>
   </div>
 </section>
 
@@ -674,6 +692,40 @@ const FUNCIONES = [
     try { await navigator.clipboard.writeText(CONFIG.codigo); avisar("Código " + CONFIG.codigo + " copiado"); }
     catch(e){ avisar("Tu código es " + CONFIG.codigo); }
   });
+
+
+  /* Visor de estilos */
+  const PANTALLAS = [["editor","Editor"],["corcho","Corcho"],["relaciones","Relaciones"]];
+  const ESTILOS = [["clasico","Clásico","Elige entre tono claro, sepia u oscuro."],["wabi-sabi","Wabi Sabi",""],["japandi","Japandi",""],["mid-century","Mid-Century",""],["boceto","Boceto",""],["bohemio","Bohemio",""],["imprenta","Imprenta",""],["acanthus","Acanthus",""],["aurora","Aurora",""],["bauhaus","Bauhaus",""]];
+  const TONOS = [["claro","Claro"],["sepia","Sepia"],["oscuro","Oscuro"]];
+  const est = {p:"editor", e:"clasico", t:"claro"};
+  function chips(id, lista, clave){
+    const box = $(id);
+    lista.forEach(([v, n]) => {
+      const b = document.createElement("button"); b.type = "button"; b.textContent = n; b.dataset.v = v;
+      b.addEventListener("click", () => { est[clave] = v; mostrarEstilo(); });
+      box.appendChild(b);
+    });
+  }
+  chips("#sel-pantalla", PANTALLAS, "p"); chips("#sel-estilo", ESTILOS, "e"); chips("#sel-tono", TONOS, "t");
+  function mostrarEstilo(){
+    [["#sel-pantalla","p"],["#sel-estilo","e"],["#sel-tono","t"]].forEach(([id,k]) =>
+      $(id).querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === est[k] ? "true" : "false")));
+    const clasico = est.e === "clasico";
+    $("#grupo-tono").hidden = !clasico;
+    const archivo = "img/estilos/" + est.p + "-" + est.e + (clasico ? "-" + est.t : "") + ".webp";
+    const e = ESTILOS.find(x => x[0] === est.e), p = PANTALLAS.find(x => x[0] === est.p);
+    const img = $("#img-estilo");
+    if (!img.src.endsWith(archivo)){
+      img.style.opacity = .25;
+      const nueva = new Image();
+      nueva.onload = () => { img.src = archivo; img.style.opacity = 1; };
+      nueva.src = archivo;
+    }
+    img.alt = p[1] + " de Domingo en estilo " + e[1] + (clasico ? ", tono " + est.t : "") + ".";
+    $("#pie-estilo").textContent = clasico ? "Clásico, tono " + est.t + ". " + e[2] : e[1];
+  }
+  mostrarEstilo();
 
   $("#anio").textContent = new Date().getFullYear();
 
