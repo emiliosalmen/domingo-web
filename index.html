@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Domingo · Escribe como si fuera domingo</title>
+<meta name="description" content="Domingo es un estudio de escritura para macOS y Windows. Novela, cuento, tesis, guion y diario en un solo archivo tuyo, sin conexión y sin suscripción.">
+<link rel="canonical" href="https://domingo-app.com.mx/">
+<link rel="icon" type="image/png" href="img/mingo.png">
+<link rel="apple-touch-icon" href="img/mingo.png">
+<meta name="theme-color" content="#1D4B45">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Domingo">
+<meta property="og:title" content="Domingo · Escribe como si fuera domingo">
+<meta property="og:description" content="Un estudio de escritura en español para proyectos largos. Pago único, sin conexión, tus archivos son tuyos.">
+<meta property="og:url" content="https://domingo-app.com.mx/">
+<meta property="og:image" content="https://domingo-app.com.mx/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Domingo",
+  "applicationCategory": "Writing application",
+  "operatingSystem": "macOS, Windows",
+  "inLanguage": "es",
+  "author": {"@type": "Person", "name": "Emilio Saldaña"},
+  "offers": {"@type": "Offer", "price": "499", "priceCurrency": "MXN"},
+  "url": "https://domingo-app.com.mx/"
+}
+</script>
+
+<style>
+:root{
+  --crema:#F8F3E4; --papel:#FBF8EE; --cafe:#5D493A; --tinta:#2A211A;
+  --verde:#1D4B45; --verde-2:#163a35; --terracota:#B4441F; --ocre:#E3A32B;
+  --amarillo:#F6E3A1; --azul:#3F5396; --linea:#d9cdb2;
+  --titulo:"IM Fell English", "Iowan Old Style", Georgia, serif;
+  --texto:"Crimson Pro", "Iowan Old Style", Georgia, serif;
+  --mano:"Caveat", "Segoe Print", cursive;
+  --ancho:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--crema);color:var(--tinta);font-family:var(--texto);font-size:20px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--verde)}
+.envoltura{max-width:var(--ancho);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--titulo);font-weight:400;line-height:1.08;margin:0;color:var(--tinta)}
+h2{font-size:clamp(38px,5vw,58px)}
+h3{font-size:28px}
+p{margin:0 0 1em}
+.versal{font-family:var(--texto);font-weight:600;letter-spacing:.42em;text-transform:uppercase;font-size:14px;color:var(--terracota)}
+.mano{font-family:var(--mano);font-size:26px;color:var(--cafe);line-height:1.15}
+.filete{width:56px;height:2px;background:var(--ocre);border:0;margin:22px 0}
+.bloque{padding:110px 0}
+.bloque + .bloque{border-top:1px solid var(--linea)}
+
+/* Botones */
+.boton{display:inline-flex;align-items:center;gap:10px;font-family:var(--texto);font-weight:600;font-size:19px;
+  padding:14px 26px;border-radius:3px;text-decoration:none;border:1.5px solid var(--verde);transition:transform .15s, background .15s, color .15s;cursor:pointer}
+.boton.primario{background:var(--verde);color:var(--crema)}
+.boton.primario:hover{background:var(--verde-2);transform:translateY(-1px)}
+.boton.secundario{background:transparent;color:var(--verde)}
+.boton.secundario:hover{background:var(--verde);color:var(--crema)}
+.boton[aria-disabled="true"]{opacity:.55;pointer-events:none}
+.boton svg{width:20px;height:20px;flex:none}
+
+/* Barra */
+.barra{position:sticky;top:0;z-index:20;background:rgba(248,243,228,.92);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--linea)}
+.barra .envoltura{display:flex;align-items:center;justify-content:space-between;height:64px}
+.marca{font-family:var(--titulo);font-style:italic;font-size:30px;color:var(--tinta);text-decoration:none;display:flex;align-items:center;gap:10px}
+.marca img{width:28px;height:auto}
+.barra nav{display:flex;gap:26px;align-items:center}
+.barra nav a{text-decoration:none;color:var(--cafe);font-size:18px}
+.barra nav a:hover{color:var(--terracota)}
+.barra nav .boton{padding:8px 18px;font-size:17px}
+@media (max-width:860px){.barra nav a:not(.boton){display:none}}
+
+/* Portada */
+.portada{padding:84px 0 40px;overflow:hidden}
+.portada .rejilla{display:grid;grid-template-columns:1fr;gap:48px}
+.portada h1{font-size:clamp(52px,8.2vw,104px);letter-spacing:-.01em;margin-top:18px}
+.portada h1 em{color:var(--verde)}
+.portada .entrada{font-size:clamp(21px,2.2vw,25px);max-width:640px;color:var(--cafe);font-style:italic}
+.acciones{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;align-items:center}
+.sistemas{font-size:16px;color:var(--cafe);margin-top:14px}
+
+.ventana{background:var(--papel);border:1.5px solid var(--tinta);border-radius:10px;overflow:hidden;
+  box-shadow:0 30px 60px -28px rgba(42,33,26,.45), 8px 8px 0 var(--verde)}
+.ventana .franja{height:26px;background:#efe7d2;border-bottom:1px solid var(--linea);display:flex;gap:7px;align-items:center;padding:0 12px}
+.ventana .franja i{width:10px;height:10px;border-radius:50%;background:#d6c9ab}
+
+/* Cuenta regresiva */
+.cuenta{margin-top:40px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;
+  background:var(--verde);color:var(--crema);border-radius:6px;padding:26px 30px;position:relative}
+.cuenta .estado{font-size:15px;letter-spacing:.32em;text-transform:uppercase;color:var(--amarillo);font-weight:600}
+.cuenta .titulo{font-family:var(--titulo);font-size:30px;line-height:1.1;margin-top:6px}
+.cuenta .nota{font-size:17px;opacity:.85;margin-top:6px}
+.cuenta .nota b{color:var(--amarillo);letter-spacing:.08em}
+.reloj{display:flex;gap:12px;justify-content:flex-end}
+.reloj div{background:rgba(248,243,228,.08);border:1px solid rgba(248,243,228,.25);border-radius:4px;min-width:84px;padding:10px 8px;text-align:center}
+.reloj span{display:block;font-family:var(--titulo);font-size:44px;line-height:1}
+.reloj small{font-size:13px;letter-spacing:.2em;text-transform:uppercase;opacity:.75}
+@media (max-width:860px){.cuenta{grid-template-columns:1fr}.reloj{justify-content:flex-start}.reloj div{min-width:0;flex:1}.reloj span{font-size:34px}}
+
+/* Valores */
+.valores{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border-top:1.5px solid var(--tinta);border-bottom:1.5px solid var(--tinta)}
+.valores div{padding:26px 22px;border-right:1px solid var(--linea)}
+.valores div:last-child{border-right:0}
+.valores h3{font-size:25px;margin-bottom:8px}
+.valores p{font-size:17.5px;color:var(--cafe);margin:0}
+@media (max-width:860px){.valores{grid-template-columns:1fr 1fr}.valores div:nth-child(2){border-right:0}.valores div:nth-child(-n+2){border-bottom:1px solid var(--linea)}}
+@media (max-width:520px){.valores{grid-template-columns:1fr}.valores div{border-right:0;border-bottom:1px solid var(--linea)}}
+
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.dos>*{min-width:0}
+@media (max-width:860px){.dos{grid-template-columns:1fr;gap:36px}}
+.cabeza{max-width:720px;margin-bottom:44px}
+.cabeza p{color:var(--cafe);font-size:21px}
+
+/* Funciones */
+.pestanas{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.pestanas button{font-family:var(--texto);font-size:17px;background:transparent;border:1.5px solid var(--linea);color:var(--cafe);padding:8px 16px;border-radius:999px;cursor:pointer}
+.pestanas button[aria-selected="true"]{background:var(--verde);border-color:var(--verde);color:var(--crema)}
+.pestanas button:hover:not([aria-selected="true"]){border-color:var(--cafe)}
+.visor{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:center}
+.visor .leyenda h3{font-size:34px;margin:6px 0 12px}
+.visor .leyenda p{color:var(--cafe);font-size:19px}
+.visor .leyenda ul{padding-left:18px;margin:0;color:var(--cafe);font-size:18px}
+.visor img{transition:opacity .25s}
+@media (max-width:860px){.visor{grid-template-columns:1fr}}
+
+.secciones{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:70px}
+.secciones article{background:var(--papel);border:1px solid var(--linea);border-radius:4px;padding:24px}
+.secciones h3{font-size:26px;color:var(--verde);margin-bottom:8px}
+.secciones p{font-size:17.5px;color:var(--cafe);margin:0}
+@media (max-width:860px){.secciones{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.secciones{grid-template-columns:1fr}}
+
+/* Estilos */
+.oscuro{background:var(--verde);color:var(--crema)}
+.oscuro h2,.oscuro h3{color:var(--crema)}
+.oscuro .versal{color:var(--amarillo)}
+.oscuro .cabeza p{color:#e4dcc6}
+.oscuro .estilos-img{border-radius:6px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.nombres-estilos{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;font-family:var(--titulo);font-size:22px;color:var(--amarillo)}
+
+/* Para quien */
+.lista-quien{list-style:none;padding:0;margin:0;border-top:1.5px solid var(--tinta)}
+.lista-quien li{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--linea)}
+.lista-quien b{font-family:var(--titulo);font-weight:400;font-size:25px}
+.lista-quien span{color:var(--cafe)}
+@media (max-width:620px){.lista-quien li{grid-template-columns:1fr;gap:2px}}
+
+/* Domingo el perro */
+.polaroids{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;max-width:980px;margin:0 auto}
+.polaroid{margin:0;background:#fff;padding:12px 12px 4px;box-shadow:0 14px 30px -18px rgba(42,33,26,.55);transition:transform .2s}
+.polaroid:nth-child(1){transform:rotate(-2.2deg)}
+.polaroid:nth-child(2){transform:rotate(1.6deg) translateY(18px)}
+.polaroid:nth-child(3){transform:rotate(-1deg)}
+.polaroid:hover{transform:rotate(0) scale(1.02)}
+.polaroid img{aspect-ratio:3/4;object-fit:cover;width:100%}
+.polaroid figcaption{font-family:var(--mano);font-size:24px;color:var(--cafe);text-align:center;padding:8px 4px}
+@media (max-width:720px){.polaroids{grid-template-columns:repeat(2,minmax(0,1fr))}.polaroid:nth-child(3){display:none}}
+
+/* Creador */
+.creador{display:grid;grid-template-columns:380px 1fr;gap:64px;align-items:center}
+.creador figure{margin:0;position:relative}
+.creador figure img{border-radius:4px;border:1.5px solid var(--tinta);box-shadow:-10px 10px 0 var(--terracota)}
+.creador .firma{font-family:var(--mano);font-size:40px;color:var(--verde);margin-top:6px}
+@media (max-width:860px){.creador{grid-template-columns:1fr}.creador figure{max-width:360px}}
+
+/* Precio */
+.precio{display:grid;grid-template-columns:1.1fr .9fr;gap:0;border:1.5px solid var(--tinta);border-radius:6px;overflow:hidden;background:var(--papel)}
+.precio .izq{padding:44px}
+.precio .der{padding:44px;background:var(--amarillo);border-left:1.5px solid var(--tinta)}
+.cifra{font-family:var(--titulo);font-size:84px;line-height:1;color:var(--tinta)}
+.cifra small{font-family:var(--texto);font-size:22px;color:var(--cafe)}
+.tachado{font-size:26px;color:var(--cafe);text-decoration:line-through;margin-right:10px}
+.incluye{list-style:none;padding:0;margin:22px 0 0}
+.incluye li{padding:9px 0 9px 30px;border-bottom:1px dashed var(--linea);position:relative;font-size:19px}
+.incluye li::before{content:"";position:absolute;left:4px;top:18px;width:12px;height:7px;border-left:2px solid var(--verde);border-bottom:2px solid var(--verde);transform:rotate(-45deg)}
+.codigo{display:inline-block;font-family:var(--titulo);font-size:30px;letter-spacing:.2em;border:1.5px dashed var(--terracota);color:var(--terracota);padding:6px 16px;margin:8px 0 6px;background:rgba(255,255,255,.4);cursor:pointer}
+@media (max-width:860px){.precio{grid-template-columns:1fr}.precio .der{border-left:0;border-top:1.5px solid var(--tinta)}.precio .izq,.precio .der{padding:30px}}
+
+/* Descargas */
+.descargas{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.descarga{border:1.5px solid var(--tinta);border-radius:6px;padding:28px;background:var(--papel);display:flex;flex-direction:column;gap:12px}
+.descarga h3{display:flex;align-items:center;gap:12px}
+.descarga h3 svg{width:28px;height:28px}
+.descarga p{color:var(--cafe);font-size:17.5px;margin:0}
+@media (max-width:720px){.descargas{grid-template-columns:1fr}}
+.pasos{counter-reset:p;list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pasos li{counter-increment:p;padding-top:14px;border-top:1.5px solid var(--tinta);color:var(--cafe);font-size:18px}
+.pasos li::before{content:counter(p);font-family:var(--titulo);font-size:42px;color:var(--terracota);display:block;line-height:1;margin-bottom:6px}
+@media (max-width:720px){.pasos{grid-template-columns:1fr}}
+
+/* Preguntas */
+.preguntas details{border-bottom:1px solid var(--linea);padding:4px 0}
+.preguntas details:first-child{border-top:1.5px solid var(--tinta)}
+.preguntas summary{cursor:pointer;list-style:none;font-family:var(--titulo);font-size:25px;padding:18px 40px 18px 0;position:relative}
+.preguntas summary::-webkit-details-marker{display:none}
+.preguntas summary::after{content:"+";position:absolute;right:6px;top:12px;font-size:32px;color:var(--terracota);transition:transform .2s}
+.preguntas details[open] summary::after{transform:rotate(45deg)}
+.preguntas details p{color:var(--cafe);max-width:760px;font-size:19px}
+
+/* Contacto y pie */
+.contacto{text-align:center}
+.contacto h2{max-width:780px;margin:0 auto}
+.contacto .enlaces{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:34px}
+.contacto .correo-texto{margin-top:16px;font-size:17px;color:var(--cafe)}
+footer{background:var(--tinta);color:#d8ccb4;padding:44px 0;font-size:16px}
+footer .envoltura{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center}
+footer a{color:var(--amarillo)}
+footer .marca{color:var(--crema);font-size:26px}
+footer details{max-width:var(--ancho);margin:24px auto 0;padding:0 24px;color:#b9ad95;font-size:15px}
+footer summary{cursor:pointer;color:#d8ccb4}
+
+.aviso{visibility:hidden;position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--tinta);color:var(--crema);padding:12px 20px;border-radius:4px;font-size:17px;transition:transform .25s;z-index:50}
+.aviso.ver{visibility:visible;transform:translateX(-50%) translateY(0)}
+
+.aparece{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease}
+.aparece.visto{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.aparece{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+:focus-visible{outline:2px solid var(--terracota);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="envoltura">
+    <a class="marca" href="#inicio" aria-label="Domingo, inicio"><img src="img/mingo.png" alt="">Domingo</a>
+    <nav aria-label="Principal">
+      <a href="#funciones">Funciones</a>
+      <a href="#domingo">¿Por qué Domingo?</a>
+      <a href="#creador">Quién lo hace</a>
+      <a href="#precio">Precio</a>
+      <a href="#preguntas">Preguntas</a>
+      <a class="boton primario" data-cta href="#precio">Comprar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+<!-- PORTADA -->
+<section class="portada">
+  <div class="envoltura">
+    <div class="rejilla">
+      <div>
+        <div class="versal">D o m i n g o</div>
+        <h1>Escribe como si<br>fuera <em>domingo</em>.</h1>
+        <hr class="filete">
+        <p class="entrada">Un estudio de escritura en español para quien quiere terminar lo que empezó. Tu novela, tu tesis, tu guion o tu diario, en un solo archivo que es tuyo.</p>
+        <div class="acciones">
+          <a class="boton primario" data-cta href="#precio">Comprar Domingo</a>
+          <a class="boton secundario" href="#funciones">Ver cómo es</a>
+        </div>
+        <div class="sistemas">Para macOS y Windows · Funciona sin conexión · Pago único</div>
+      </div>
+
+      <div class="ventana aparece">
+        <div class="franja"><i></i><i></i><i></i></div>
+        <img src="img/escribir.webp" width="1600" height="1000" alt="Domingo con un manuscrito abierto: estructura de capítulos a la izquierda, el texto al centro e inspector de la escena a la derecha.">
+      </div>
+    </div>
+
+    <div class="cuenta" id="cuenta" aria-live="polite">
+      <div>
+        <div class="estado" id="cuenta-estado">Preventa</div>
+        <div class="titulo" id="cuenta-titulo">La preventa abre el domingo 15 de noviembre</div>
+        <div class="nota" id="cuenta-nota">Las primeras 10 personas pagan $399 MXN con el código <b>MANGO</b>.</div>
+      </div>
+      <div class="reloj" id="reloj">
+        <div><span id="r-d">00</span><small>días</small></div>
+        <div><span id="r-h">00</span><small>horas</small></div>
+        <div><span id="r-m">00</span><small>min</small></div>
+        <div><span id="r-s">00</span><small>seg</small></div>
+      </div>
+    </div>
+
+    <div class="valores">
+      <div><h3>Tuyo</h3><p>Cada proyecto es un archivo .mingo en tu equipo, en un formato abierto y documentado.</p></div>
+      <div><h3>Privado</h3><p>Sin cuenta y sin nube. Tu texto no sale de tu computadora y el diario se puede cifrar.</p></div>
+      <div><h3>En español</h3><p>Corrección, estilo y plantillas pensadas para nuestro idioma, con sus tildes y su puntuación.</p></div>
+      <div><h3>Sin prisa</h3><p>Metas amables que se apagan si quieres. Escribes a tu ritmo, no al de la app.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCIONES -->
+<section class="bloque" id="funciones">
+  <div class="envoltura">
+    <div class="cabeza">
+      <div class="versal">La app</div>
+      <h2>Todo lo que rodea al texto, en el mismo lugar</h2>
+      <hr class="filete">
+      <p>El manuscrito, los personajes, los mapas, la revisión, las fuentes y tu diario viven juntos y se conocen entre sí. Lo sencillo aparece primero; lo avanzado, cuando lo necesitas.</p>
+    </div>
+
+    <div class="pestanas" role="tablist" aria-label="Funciones de Domingo" id="pestanas"></div>
+    <div class="visor">
+      <div class="leyenda" id="leyenda" role="tabpanel"></div>
+      <div class="ventana"><div class="franja"><i></i><i></i><i></i></div><img id="captura" src="img/escribir.webp" width="1600" height="1000" alt=""></div>
+    </div>
+
+    <div class="secciones">
+      <article class="aparece"><h3>Escribir</h3><p>Editor con formato y Markdown, Corcho, Esquema y Tablero, pantalla dividida, máquina de escribir, metas y captura rápida de ideas.</p></article>
+      <article class="aparece"><h3>Mundo</h3><p>Personajes, lugares y objetos con fichas; mapa de relaciones, línea de tiempo, mapa geográfico, árbol familiar y lenguas inventadas.</p></article>
+      <article class="aparece"><h3>Relato</h3><p>Tramas, arcos de personaje, tensión por escena, ramas para saltos en el tiempo y formato de guion o teatro.</p></article>
+      <article class="aparece"><h3>Revisar</h3><p>Corrección en español, estilo, repeticiones, glosario, presencia de personajes, detector de nombres y versiones.</p></article>
+      <article class="aparece"><h3>Estudio</h3><p>PDF con subrayado y comentarios, fuentes, citas, bibliografía y notas numeradas para tu tesis o ensayo.</p></article>
+      <article class="aparece"><h3>Vida</h3><p>Diario con plantillas, línea de vida, planes, hábitos e inspiración. Lo vivido puede volverse historia.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ESTILOS -->
+<section class="bloque oscuro" id="estilos">
+  <div class="envoltura">
+    <div class="cabeza">
+      <div class="versal">Diez estilos</div>
+      <h2>Elige cómo se ve tu estudio</h2>
+      <hr class="filete">
+      <p>Cada estilo cambia la app completa, en tema claro y oscuro. Algunos se desbloquean con el uso, según los días que escribes y las palabras que juntas.</p>
+    </div>
+    <img class="estilos-img aparece" src="img/estilos.webp" width="1800" height="766" loading="lazy" alt="Seis estilos visuales de Domingo: Imprenta, Acanthus, Boceto, Aurora, Bauhaus y Japandi.">
+    <div class="nombres-estilos"><span>Clásico</span><span>Imprenta</span><span>Wabi Sabi</span><span>Japandi</span><span>Mid-Century</span><span>Boceto</span><span>Bohemio</span><span>Acanthus</span><span>Aurora</span><span>Bauhaus</span></div>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="bloque" id="para-quien">
+  <div class="envoltura dos">
+    <div>
+      <div class="versal">Para quién</div>
+      <h2>Para cualquiera que tenga algo que escribir</h2>
+      <hr class="filete">
+      <p class="mano">No hace falta ser novelista. Basta con tener ideas sueltas que piden un lugar.</p>
+      <div class="ventana aparece" style="margin-top:28px">
+        <div class="franja"><i></i><i></i><i></i></div>
+        <img src="img/quijote.webp" width="1600" height="956" loading="lazy" alt="Don Quijote abierto en Domingo con el estilo Bohemio, una de las obras de muestra.">
+      </div>
+    </div>
+    <ul class="lista-quien">
+      <li><b>Novela y cuento</b><span>Muchos personajes, lugares y líneas de tiempo sin perder el hilo de cada escena.</span></li>
+      <li><b>Tesis y ensayo</b><span>Fuentes, citas, notas numeradas, bibliografía y mapas de conceptos.</span></li>
+      <li><b>Guion y teatro</b><span>Formato de cine o libreto, con intercambio en Fountain.</span></li>
+      <li><b>Diario</b><span>Privado, con contraseña si quieres, enlazado a lo que escribes.</span></li>
+      <li><b>Quien empieza</b><span>Talleres guiados y obras de muestra para aprender haciendo, como Don Quijote y La vida es sueño.</span></li>
+      <li><b>Al terminar</b><span>Compila a Word, ePub, PDF, Markdown, HTML o LaTeX con formato de libro.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- DOMINGO EL PERRO -->
+<section class="bloque" id="domingo" style="background:var(--papel)">
+  <div class="envoltura">
+    <div class="dos" style="margin-bottom:64px">
+    <div>
+      <div class="versal">¿Por qué Domingo?</div>
+      <h2>Se llama como mi perro</h2>
+      <hr class="filete">
+      <p>Domingo es un chihuahua que se sienta a mi lado cada vez que escribo. Es mi compañía más cercana y el editor en jefe de esta casa: no corrige comas, pero sabe cuándo es hora de levantarse a jugar.</p>
+    </div>
+    <div style="padding-top:56px">
+      <p>Por eso la app lleva su nombre. Quería un lugar para escribir con la calma de un domingo: sin prisa, sin ruido y con alguien que te acompañe.</p>
+      <p class="mano">Dentro de la app también hay un gato de píxeles, Misi, que acompaña la escritura. Y quizá, si escribes mucho, aparezca alguien más.</p>
+    </div>
+    </div>
+    <div class="polaroids">
+      <figure class="polaroid aparece"><img src="img/domingo-1.webp" width="720" height="960" loading="lazy" alt="Domingo recostado en las piernas de Emilio frente a la laptop."><figcaption>supervisando</figcaption></figure>
+      <figure class="polaroid aparece"><img src="img/domingo-2.webp" width="720" height="960" loading="lazy" alt="Domingo de cachorro sobre un cojín amarillo."><figcaption>primer borrador</figcaption></figure>
+      <figure class="polaroid aparece"><img src="img/domingo-4.webp" width="720" height="960" loading="lazy" alt="Retrato de Domingo con las orejas levantadas."><figcaption>el editor en jefe</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- CREADOR -->
+<section class="bloque" id="creador">
+  <div class="envoltura creador">
+    <figure class="aparece">
+      <img src="img/domingo-3.webp" width="720" height="960" loading="lazy" alt="Emilio Saldaña sentado en el pasto con Domingo.">
+    </figure>
+    <div>
+      <div class="versal">Quién lo hace</div>
+      <h2>Hola, soy Emilio</h2>
+      <hr class="filete">
+      <p>Escribo desde hace más de veinte años. Soy psicoanalista y programo por gusto. Domingo nació de una necesidad concreta: juntar ideas dispersas y darles estructura, sin perder la calma ni el gusto por escribir.</p>
+      <p>Así que la hice. Es una app de un escritor para otros escritores: sencilla y elegante, con espacio para el juego, y que respeta tu ritmo y tus metas. No hay una empresa detrás: hay una persona que escribe y que te responde si le escribes.</p>
+      <div class="firma">Emilio Saldaña</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRECIO -->
+<section class="bloque" id="precio" style="background:var(--papel)">
+  <div class="envoltura">
+    <div class="cabeza">
+      <div class="versal">Precio</div>
+      <h2>Un solo pago. Sin suscripción.</h2>
+      <hr class="filete">
+      <p>Compras una licencia y es tuya. Sin cuotas mensuales, sin cuenta y sin fecha de caducidad.</p>
+    </div>
+
+    <div class="precio">
+      <div class="izq">
+        <div id="precio-cifra"><span class="tachado" id="precio-antes" hidden>$499</span><span class="cifra">$<span id="precio-num">499</span> <small>MXN</small></span></div>
+        <p style="color:var(--cafe);margin-top:10px" id="precio-texto">Pago único, licencia de por vida.</p>
+        <ul class="incluye">
+          <li>Licencia para 2 equipos</li>
+          <li>macOS y Windows</li>
+          <li>Todas las herramientas, sin versiones recortadas</li>
+          <li>Funciona sin conexión</li>
+          <li>Reembolso en 14 días, sin preguntas</li>
+        </ul>
+        <div class="acciones">
+          <a class="boton primario" data-cta id="boton-comprar" href="#">Comprar</a>
+        </div>
+        <p style="font-size:15px;color:var(--cafe);margin-top:14px">El pago se procesa de forma segura con Lemon Squeezy. Recibirás tu clave de licencia por correo.</p>
+      </div>
+      <div class="der">
+        <div class="versal" style="color:var(--terracota)">Preventa</div>
+        <h3 style="font-size:34px;margin:10px 0 12px">Del 15 al 22 de noviembre</h3>
+        <p>Las primeras 10 personas que compren durante la preventa pagan <b>$399 MXN</b>. Usa este código al pagar:</p>
+        <button class="codigo" id="codigo" type="button" title="Copiar código">MANGO</button>
+        <p style="font-size:16px;color:var(--cafe)">Toca el código para copiarlo. Cuando se agoten los 10 lugares, el precio vuelve a $499.</p>
+        <p class="mano" style="margin-top:18px">El Mango es el botón de inspiración de la app. Por eso el código.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESCARGAS -->
+<section class="bloque" id="descargar">
+  <div class="envoltura">
+    <div class="cabeza">
+      <div class="versal">Descargar</div>
+      <h2>Instala Domingo</h2>
+      <hr class="filete">
+      <p id="descarga-intro">Las descargas se abren el domingo 22 de noviembre.</p>
+    </div>
+    <div class="descargas">
+      <div class="descarga">
+        <h3><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.2 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.1-1.2 2.9-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.5-1-2.5-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>macOS</h3>
+        <p>Instalador .dmg para Mac.</p>
+        <div><a class="boton primario" id="descarga-mac" href="#" aria-disabled="true">Descargar para Mac</a></div>
+      </div>
+      <div class="descarga">
+        <h3><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.1 10 4v7.3H3V5.1zm0 13.8 7 1.1v-7.2H3v6.1zm8 1.3 10 1.5v-8.8H11v7.3zM11 3.8V11h10V2.3L11 3.8z"/></svg>Windows</h3>
+        <p>Instalador .exe para Windows.</p>
+        <div><a class="boton primario" id="descarga-win" href="#" aria-disabled="true">Descargar para Windows</a></div>
+      </div>
+    </div>
+    <ol class="pasos">
+      <li>Compra tu licencia y revisa tu correo: ahí llega la clave.</li>
+      <li>Descarga e instala Domingo en tu Mac o tu PC.</li>
+      <li>Abre la app, pega tu clave y empieza a escribir.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- PREGUNTAS -->
+<section class="bloque" id="preguntas" style="background:var(--papel)">
+  <div class="envoltura">
+    <div class="cabeza">
+      <div class="versal">Preguntas</div>
+      <h2>Lo que suelen preguntar</h2>
+      <hr class="filete">
+    </div>
+    <div class="preguntas">
+      <details><summary>¿Necesito internet para usar Domingo?</summary><p>No. Domingo funciona sin conexión. Solo necesitas internet para descargarla y activar tu licencia.</p></details>
+      <details><summary>¿Dónde se guardan mis textos?</summary><p>En tu computadora, en archivos .mingo que tú eliges dónde guardar. No hay nube ni cuenta. Domingo hace copias de seguridad automáticas al guardar y puedes recuperarlas por fecha.</p></details>
+      <details><summary>¿En cuántos equipos puedo usarla?</summary><p>Tu licencia sirve para dos equipos, por ejemplo tu computadora de escritorio y tu laptop, aunque uno sea Mac y otro Windows.</p></details>
+      <details><summary>¿Es una suscripción?</summary><p>No. Pagas una vez y la licencia es tuya, sin fecha de caducidad.</p></details>
+      <details><summary>¿Cómo funciona la preventa?</summary><p>Del domingo 15 al domingo 22 de noviembre, las primeras 10 personas que usen el código MANGO al pagar obtienen Domingo por $399 MXN. Después el precio es $499 MXN.</p></details>
+      <details><summary>¿Y si no me gusta?</summary><p>Tienes 14 días para pedir tu reembolso, sin preguntas. Escribe a contacto@domingo-app.com.mx.</p></details>
+      <details><summary>Mi Mac dice que no puede comprobar la app. ¿Qué hago?</summary><p>Domingo todavía no tiene firma de Apple, así que la primera vez macOS puede detenerla. Abre Configuración del Sistema, entra a Privacidad y seguridad, baja hasta el aviso sobre Domingo y pulsa «Abrir de todos modos». Solo hay que hacerlo una vez.</p></details>
+      <details><summary>Windows muestra un aviso azul al instalar. ¿Es normal?</summary><p>Sí. Es el filtro SmartScreen, que aparece con programas nuevos que aún no tienen firma. Pulsa «Más información» y después «Ejecutar de todas formas».</p></details>
+      <details><summary>¿Hay versión para Linux, iPad o teléfono?</summary><p>Por ahora Domingo es para macOS y Windows. Si te interesa otra plataforma, escríbeme: eso ayuda a decidir qué sigue.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="bloque contacto" id="contacto">
+  <div class="envoltura">
+    <div class="versal">Contacto</div>
+    <h2 style="margin-top:14px">¿Dudas, ideas o un error que encontraste? Escríbeme.</h2>
+    <div class="enlaces">
+      <a class="boton primario" href="mailto:contacto@domingo-app.com.mx">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Escribir un correo</a>
+      <a class="boton secundario" href="https://www.instagram.com/domingo.app/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@domingo.app</a>
+    </div>
+    <p class="correo-texto">contacto@domingo-app.com.mx</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="envoltura">
+    <a class="marca" href="#inicio">Domingo</a>
+    <span>Hecho por Emilio Saldaña · © <span id="anio">2026</span></span>
+    <span><a href="https://www.instagram.com/domingo.app/" target="_blank" rel="noopener">Instagram</a> · <a href="mailto:contacto@domingo-app.com.mx">Correo</a></span>
+  </div>
+  <details>
+    <summary>Privacidad</summary>
+    <p>Este sitio no usa cookies, formularios ni herramientas de rastreo. Si me escribes por correo, uso tu dirección solo para responderte. Los pagos los procesa Lemon Squeezy, que recibe los datos necesarios para cobrar y enviarte tu licencia. La app Domingo no envía tus textos a ningún servidor.</p>
+  </details>
+</footer>
+
+<div class="aviso" id="aviso" role="status"></div>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN · lo único que necesitas editar
+   ============================================================ */
+const CONFIG = {
+  // Enlace de compra de Lemon Squeezy (Store > Products > Share). Si está vacío, el botón dice "Muy pronto".
+  checkout: "",
+  // Enlaces directos a los instaladores. Si están vacíos, los botones quedan desactivados.
+  descargaMac: "",
+  descargaWin: "",
+  // Fechas en hora de Monterrey (UTC-6)
+  preventa:    "2026-11-15T00:00:00-06:00",
+  lanzamiento: "2026-11-22T00:00:00-06:00",
+  // Cuándo se habilitan las descargas (por defecto, el día del lanzamiento)
+  descargas:   "2026-11-22T00:00:00-06:00",
+  codigo: "MANGO",
+  precio: 499,
+  precioPreventa: 399
+};
+
+/* Funciones del visor */
+const FUNCIONES = [
+  {id:"escribir",  t:"Escribir",    img:"escribir",  h:"Escribe sin ruido", p:"Un editor limpio con la estructura a la izquierda y el inspector a la derecha: sinopsis, notas, estado y etiquetas de cada escena."},
+  {id:"corcho",    t:"Corcho",      img:"corcho",    h:"Tus escenas en tarjetas", p:"Mira el capítulo completo como fichas sobre un corcho. Reordénalas arrastrando y ve quién aparece en cada una."},
+  {id:"relaciones",t:"Relaciones",  img:"relaciones",h:"Quién es quién", p:"Un mapa de relaciones entre personajes, con deseos, conflictos y lazos de familia."},
+  {id:"tiempo",    t:"Línea de tiempo", img:"tiempo",h:"Cuándo pasa cada cosa", p:"Ordena los eventos de tu historia en una línea de tiempo enlazada a las escenas."},
+  {id:"mapa",      t:"Mapa",        img:"mapa",      h:"Dibuja tu mundo", p:"Un mapa geográfico con lugares, rutas y zonas. Cada lugar se conecta con las escenas que ocurren ahí."},
+  {id:"conceptos", t:"Tesis",       img:"conceptos", h:"Ordena un argumento", p:"Mapas de conceptos, fuentes, citas y notas numeradas para escribir un ensayo o una tesis con orden."},
+  {id:"revisar",   t:"Revisar",     img:"revisar",   h:"Mira tu texto en números", p:"Ritmo de frases, legibilidad, diálogo y vocabulario por escena, además de corrección pensada para el español."},
+  {id:"diario",    t:"Diario",      img:"diario",    h:"Un diario que se cuida", p:"Entradas con plantillas de reflexión y ánimo del día. Puedes protegerlo con contraseña y enlazar lo vivido con lo que escribes."},
+  {id:"habito",    t:"Hábito",      img:"habito",    h:"Constancia sin presión", p:"Un calendario de escritura con rachas y meta diaria. Si un día no escribes, no pasa nada."},
+  {id:"compilar",  t:"Compilar",    img:"compilar",  h:"De borrador a libro", p:"Compila tu manuscrito a PDF, Word o ePub con plantillas de novela, ensayo y cuento, portada y páginas preliminares."}
+];
+
+(function(){
+  const $ = s => document.querySelector(s);
+  const T = s => new Date(s).getTime();
+
+  /* Pestañas */
+  const tabs = $("#pestanas"), leyenda = $("#leyenda"), captura = $("#captura");
+  FUNCIONES.forEach((f,i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.role = "tab"; b.textContent = f.t; b.dataset.i = i;
+    b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+    b.addEventListener("click", () => elegir(i));
+    tabs.appendChild(b);
+  });
+  FUNCIONES.forEach(f => { const im = new Image(); im.src = "img/" + f.img + ".webp"; });
+  function elegir(i){
+    const f = FUNCIONES[i];
+    tabs.querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.i == i ? "true" : "false"));
+    leyenda.innerHTML = '<div class="versal">' + f.t + '</div><h3>' + f.h + '</h3><p>' + f.p + '</p>';
+    captura.style.opacity = 0;
+    setTimeout(() => { captura.src = "img/" + f.img + ".webp"; captura.alt = f.h + ". " + f.p; captura.style.opacity = 1; }, 150);
+  }
+  elegir(0);
+
+  /* Fase de venta. Para revisar cada fase: añade #prueba-preventa o #prueba-venta a la dirección */
+  function fase(){
+    const h = location.hash;
+    if (h === "#prueba-antes") return "antes";
+    if (h === "#prueba-preventa") return "preventa";
+    if (h === "#prueba-venta") return "venta";
+    const n = Date.now();
+    if (n < T(CONFIG.preventa)) return "antes";
+    if (n < T(CONFIG.lanzamiento)) return "preventa";
+    return "venta";
+  }
+
+  function enlaceCompra(conCodigo){
+    if (!CONFIG.checkout) return "";
+    if (!conCodigo) return CONFIG.checkout;
+    const sep = CONFIG.checkout.includes("?") ? "&" : "?";
+    return CONFIG.checkout + sep + "checkout%5Bdiscount_code%5D=" + encodeURIComponent(CONFIG.codigo);
+  }
+
+  function pintar(){
+    const f = fase();
+    const estado = $("#cuenta-estado"), titulo = $("#cuenta-titulo"), nota = $("#cuenta-nota");
+    const ctas = document.querySelectorAll("[data-cta]");
+    let destino = "", texto = "Comprar";
+
+    if (f === "antes"){
+      estado.textContent = "Muy pronto";
+      titulo.textContent = "La preventa abre el domingo 15 de noviembre";
+      nota.innerHTML = "Las primeras 10 personas pagan $" + CONFIG.precioPreventa + " MXN con el código <b>" + CONFIG.codigo + "</b>.";
+      $("#reloj").hidden = false;
+      texto = "Comprar el 15 de noviembre";
+    } else if (f === "preventa"){
+      estado.textContent = "Preventa abierta";
+      titulo.textContent = "Domingo llega en domingo, el 22 de noviembre";
+      nota.innerHTML = "Ahora: $" + CONFIG.precioPreventa + " MXN para las primeras 10 personas con el código <b>" + CONFIG.codigo + "</b>.";
+      $("#reloj").hidden = false;
+      destino = enlaceCompra(true);
+      texto = "Comprar en preventa";
+      $("#precio-antes").hidden = false;
+      $("#precio-num").textContent = CONFIG.precioPreventa;
+      $("#precio-texto").textContent = "Precio de preventa con el código " + CONFIG.codigo + ", solo para las primeras 10 personas.";
+    } else {
+      estado.textContent = "Ya disponible";
+      titulo.textContent = "Domingo ya está aquí";
+      nota.innerHTML = "$" + CONFIG.precio + " MXN, pago único. Licencia para 2 equipos.";
+      $("#reloj").hidden = true;
+      destino = enlaceCompra(false);
+      texto = "Comprar Domingo";
+    }
+
+    ctas.forEach(a => {
+      if (destino){ a.href = destino; a.removeAttribute("aria-disabled"); a.textContent = a.closest(".barra") ? "Comprar" : texto; }
+      else { a.href = "#precio"; a.textContent = a.closest(".barra") ? "Comprar" : (f === "antes" ? texto : "Muy pronto"); }
+    });
+    const bc = $("#boton-comprar");
+    if (!destino){ bc.setAttribute("aria-disabled","true"); bc.textContent = f === "antes" ? "Disponible el 15 de noviembre" : "Muy pronto"; }
+
+    /* Descargas */
+    const abiertas = Date.now() >= T(CONFIG.descargas) || location.hash === "#prueba-venta";
+    [["#descarga-mac", CONFIG.descargaMac], ["#descarga-win", CONFIG.descargaWin]].forEach(([sel, url]) => {
+      const a = $(sel);
+      if (abiertas && url){ a.href = url; a.removeAttribute("aria-disabled"); }
+      else { a.href = "#descargar"; a.setAttribute("aria-disabled","true"); }
+    });
+    $("#descarga-intro").textContent = abiertas
+      ? "Elige tu sistema. La descarga es libre; tu clave de licencia la desbloquea."
+      : "Las descargas se abren el domingo 22 de noviembre. Si compras en preventa, tu clave llega por correo y la usas ese día.";
+    return f;
+  }
+
+  /* Cuenta regresiva */
+  const dos = n => String(n).padStart(2, "0");
+  function tic(){
+    const f = pintar();
+    const meta = f === "antes" ? T(CONFIG.preventa) : T(CONFIG.lanzamiento);
+    let r = Math.max(0, meta - Date.now());
+    if (location.hash.startsWith("#prueba")) r = 3*864e5 + 5*36e5 + 42*6e4 + 17e3;
+    const d = Math.floor(r/864e5), h = Math.floor(r%864e5/36e5), m = Math.floor(r%36e5/6e4), s = Math.floor(r%6e4/1e3);
+    $("#r-d").textContent = dos(d); $("#r-h").textContent = dos(h); $("#r-m").textContent = dos(m); $("#r-s").textContent = dos(s);
+  }
+  tic(); setInterval(tic, 1000);
+  window.addEventListener("hashchange", tic);
+
+  /* Copiar código */
+  const aviso = $("#aviso");
+  function avisar(t){ aviso.textContent = t; aviso.classList.add("ver"); clearTimeout(avisar.t); avisar.t = setTimeout(() => aviso.classList.remove("ver"), 2200); }
+  $("#codigo").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(CONFIG.codigo); avisar("Código " + CONFIG.codigo + " copiado"); }
+    catch(e){ avisar("Tu código es " + CONFIG.codigo); }
+  });
+
+  $("#anio").textContent = new Date().getFullYear();
+
+  /* Aparición suave */
+  if ("IntersectionObserver" in window){
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("visto"); io.unobserve(e.target); } }), {threshold:.12});
+    document.querySelectorAll(".aparece").forEach(el => io.observe(el));
+  } else document.querySelectorAll(".aparece").forEach(el => el.classList.add("visto"));
+})();
+</script>
+</body>
+</html>
