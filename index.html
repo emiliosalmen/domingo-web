@@ -6,8 +6,9 @@
 <title>Domingo · Escribe como si fuera domingo</title>
 <meta name="description" content="Domingo es un estudio de escritura para macOS y Windows. Novela, cuento, tesis, guion y diario en un solo archivo tuyo, sin conexión y sin suscripción.">
 <link rel="canonical" href="https://domingo-app.com.mx/">
-<link rel="icon" type="image/png" href="img/mingo.png">
-<link rel="apple-touch-icon" href="img/mingo.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icono-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/icono-512.png">
+<link rel="apple-touch-icon" href="img/icono-180.png">
 <meta name="theme-color" content="#1D4B45">
 
 <meta property="og:type" content="website">
@@ -33,7 +34,8 @@
   "inLanguage": "es",
   "author": {"@type": "Person", "name": "Emilio Saldaña"},
   "offers": {"@type": "Offer", "price": "499", "priceCurrency": "MXN"},
-  "url": "https://domingo-app.com.mx/"
+  "url": "https://domingo-app.com.mx/",
+  "image": "https://domingo-app.com.mx/img/icono-512.png"
 }
 </script>
 
@@ -78,7 +80,9 @@ p{margin:0 0 1em}
 .barra{position:sticky;top:0;z-index:20;background:rgba(248,243,228,.92);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--linea)}
 .barra .envoltura{display:flex;align-items:center;justify-content:space-between;height:64px}
 .marca{font-family:var(--titulo);font-style:italic;font-size:30px;color:var(--tinta);text-decoration:none;display:flex;align-items:center;gap:10px}
-.marca img{width:28px;height:auto}
+.marca img{width:48px;height:auto}
+.logo-portada{width:150px;margin-bottom:22px}
+footer .marca img{width:44px}
 .barra nav{display:flex;gap:26px;align-items:center}
 .barra nav a{text-decoration:none;color:var(--cafe);font-size:18px}
 .barra nav a:hover{color:var(--terracota)}
@@ -238,7 +242,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 
 <header class="barra">
   <div class="envoltura">
-    <a class="marca" href="#inicio" aria-label="Domingo, inicio"><img src="img/mingo.png" alt="">Domingo</a>
+    <a class="marca" href="#inicio" aria-label="Domingo, inicio"><img src="img/logo.png" alt="" width="48" height="30">Domingo</a>
     <nav aria-label="Principal">
       <a href="#funciones">Funciones</a>
       <a href="#domingo">¿Por qué Domingo?</a>
@@ -257,6 +261,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
   <div class="envoltura">
     <div class="rejilla">
       <div>
+        <img class="logo-portada" src="img/logo.png" width="480" height="302" alt="Logo de Domingo: un chihuahua dormido sobre un libro abierto.">
         <div class="versal">D o m i n g o</div>
         <h1>Escribe como si<br>fuera <em>domingo</em>.</h1>
         <hr class="filete">
@@ -510,7 +515,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 
 <footer>
   <div class="envoltura">
-    <a class="marca" href="#inicio">Domingo</a>
+    <a class="marca" href="#inicio"><img src="img/logo-crema.png" alt="" width="44" height="28">Domingo</a>
     <span>Hecho por Emilio Saldaña · © <span id="anio">2026</span></span>
     <span><a href="https://www.instagram.com/domingo.app/" target="_blank" rel="noopener">Instagram</a> · <a href="mailto:contacto@domingo-app.com.mx">Correo</a></span>
   </div>
