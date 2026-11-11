@@ -209,6 +209,15 @@ footer .marca img{width:44px}
 .codigo{display:inline-block;font-family:var(--titulo);font-size:30px;letter-spacing:.2em;border:1.5px dashed var(--terracota);color:var(--terracota);padding:6px 16px;margin:8px 0 6px;background:rgba(255,255,255,.4);cursor:pointer}
 @media (max-width:860px){.precio{grid-template-columns:1fr}.precio .der{border-left:0;border-top:1.5px solid var(--tinta)}.precio .izq,.precio .der{padding:30px}}
 
+.lite{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--tinta);border-radius:6px;overflow:hidden;background:var(--papel)}
+.lite>div{padding:34px 38px}
+.lite>div+div{border-left:1.5px solid var(--tinta);background:var(--crema)}
+.lite h3{font-size:30px;margin-bottom:4px}
+.limites{list-style:none;padding:0;margin:22px 0 0}
+.limites li{padding:9px 0 9px 30px;border-bottom:1px dashed var(--linea);position:relative;font-size:19px;color:var(--cafe)}
+.limites li::before{content:"";position:absolute;left:4px;top:21px;width:12px;height:2px;background:var(--terracota)}
+.nota-lite{margin-top:14px;font-size:16px;color:var(--cafe)}
+@media (max-width:760px){.lite{grid-template-columns:1fr}.lite>div+div{border-left:0;border-top:1.5px solid var(--tinta)}.lite>div{padding:26px 24px}}
 /* Descargas */
 .descargas{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .descarga{border:1.5px solid var(--tinta);border-radius:6px;padding:28px;background:var(--papel);display:flex;flex-direction:column;gap:12px}
@@ -262,6 +271,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
       <a href="#funciones">Funciones</a>
       <a href="#domingo">¿Por qué Domingo?</a>
       <a href="#creador">Quién lo hace</a>
+      <a href="#probar">Pruébalo</a>
       <a href="#precio">Precio</a>
       <a href="#preguntas">Preguntas</a>
       <a class="boton primario" data-cta href="#precio">Comprar</a>
@@ -283,7 +293,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
         <p class="entrada">Un estudio de escritura en español para quien quiere terminar lo que empezó. Tu novela, tu tesis, tu guion o tu diario, en un solo archivo que es tuyo.</p>
         <div class="acciones">
           <a class="boton primario" data-cta href="#precio">Comprar Domingo</a>
-          <a class="boton secundario" href="#funciones">Ver cómo es</a>
+          <a class="boton secundario" href="probar/">Pruébalo gratis</a>
         </div>
         <div class="sistemas">Para macOS y Windows · Funciona sin conexión · Pago único</div>
       </div>
@@ -427,6 +437,44 @@ footer summary{cursor:pointer;color:#d8ccb4}
   </div>
 </section>
 
+<!-- PRUEBA -->
+<section class="bloque" id="probar">
+  <div class="envoltura">
+    <div class="cabeza">
+      <div class="versal">Pruébalo</div>
+      <h2>Escribe en Domingo antes de comprarlo</h2>
+      <hr class="filete">
+      <p>Domingo Lite abre en tu navegador, sin instalar nada y sin cuenta. Es la misma app, con lo esencial encendido.</p>
+    </div>
+    <div class="lite">
+      <div>
+        <h3>Incluye</h3>
+        <ul class="incluye">
+          <li>Editor, corcho y etiquetas</li>
+          <li>Mapa de relaciones</li>
+          <li>Misi y los mangos</li>
+          <li>Tres estilos visuales y los temas claro, sepia y oscuro</li>
+          <li>Guardar tu archivo .mingo, que abre tal cual la app completa</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Límites</h3>
+        <ul class="limites">
+          <li>Hasta 5,000 palabras</li>
+          <li>Un manuscrito a la vez</li>
+          <li>Mapas de hasta 6 elementos</li>
+          <li>Sin exportar a Word, PDF o ePub</li>
+          <li>Revisar, Estudio, Vida y el resto de las herramientas viven en la app completa</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acciones">
+      <a class="boton primario" href="probar/">Abrir Domingo Lite</a>
+    </div>
+    <p class="nota-lite">Mejor en computadora. Lo que escribes se queda en tu navegador; guárdalo como .mingo para no perderlo.</p>
+  </div>
+</section>
+
 <!-- PRECIO -->
 <section class="bloque" id="precio" style="background:var(--papel)">
   <div class="envoltura">
@@ -507,6 +555,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
       <details><summary>¿Necesito internet para usar Domingo?</summary><p>No. Domingo funciona sin conexión. Solo necesitas internet para descargarla y activar tu licencia.</p></details>
       <details><summary>¿Dónde se guardan mis textos?</summary><p>En tu computadora, en archivos .mingo que tú eliges dónde guardar. No hay nube ni cuenta. Domingo hace copias de seguridad automáticas al guardar y puedes recuperarlas por fecha.</p></details>
       <details><summary>¿En cuántos equipos puedo usarla?</summary><p>Tu licencia sirve para dos equipos, por ejemplo tu computadora de escritorio y tu laptop, aunque uno sea Mac y otro Windows. Para cambiar de computadora, en la anterior ve a Configuración › Licencia › Liberar este dispositivo.</p></details>
+      <details><summary>¿Puedo probar Domingo antes de comprarlo?</summary><p>Sí. <a href="probar/">Domingo Lite</a> abre en tu navegador, sin instalar nada. Tiene el editor, el corcho, el mapa de relaciones, Misi y los mangos, con un tope de 5,000 palabras. Lo que escribas lo guardas como archivo .mingo y lo abres después en la app completa.</p></details>
       <details><summary>¿Es una suscripción?</summary><p>No. Pagas una vez y la licencia es tuya, sin fecha de caducidad.</p></details>
       <details><summary>¿Cómo funciona la preventa?</summary><p>Del domingo 15 al domingo 22 de noviembre, las primeras 10 personas que usen el código MANGO al pagar obtienen Domingo por $399 MXN. Después el precio es $499 MXN.</p></details>
       <details><summary>¿Y si no me gusta?</summary><p>Tienes 14 días para pedir tu reembolso, sin preguntas. Escribe a contacto@domingo-app.com.mx.</p></details>
