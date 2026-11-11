@@ -218,6 +218,8 @@ footer .marca img{width:44px}
 @media (max-width:720px){.descargas{grid-template-columns:1fr}}
 .pasos{counter-reset:p;list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .pasos li{counter-increment:p;padding-top:14px;border-top:1.5px solid var(--tinta);color:var(--cafe);font-size:18px}
+.como-instalar{margin-top:30px;font-size:18px;color:var(--cafe)}
+.como-instalar a{font-family:var(--titulo);font-size:24px;color:var(--terracota);margin-right:8px}
 .pasos li::before{content:counter(p);font-family:var(--titulo);font-size:42px;color:var(--terracota);display:block;line-height:1;margin-bottom:6px}
 @media (max-width:720px){.pasos{grid-template-columns:1fr}}
 
@@ -489,6 +491,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
       <li>Descarga e instala Domingo en tu Mac o tu PC.</li>
       <li>Abre la app, pega tu clave y empieza a escribir.</li>
     </ol>
+    <p class="como-instalar"><a href="instalar/">¿Cómo instalo Domingo?</a> Los pasos con imágenes, incluidos los avisos de seguridad de la primera vez.</p>
   </div>
 </section>
 
@@ -553,8 +556,8 @@ const CONFIG = {
   // Enlace de compra de Lemon Squeezy (Store > Products > Share). Si está vacío, el botón dice "Muy pronto".
   checkout: "",
   // Enlaces directos a los instaladores. Si están vacíos, los botones quedan desactivados.
-  descargaMac: "",
-  descargaWin: "",
+  descargaMac: "https://github.com/emiliosalmen/domingo-descargas/releases/latest/download/Domingo-mac.dmg",
+  descargaWin: "https://github.com/emiliosalmen/domingo-descargas/releases/latest/download/Domingo-windows.exe",
   // Fechas en hora de Monterrey (UTC-6)
   preventa:    "2026-11-15T00:00:00-06:00",
   lanzamiento: "2026-11-22T00:00:00-06:00",
