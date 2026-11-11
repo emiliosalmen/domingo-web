@@ -25601,7 +25601,37 @@ try {
 /* la app ya está armada: se quita la pantalla de arranque */
 document.documentElement.classList.remove('arr');
 </script>
-<script>requestAnimationFrame(function(){requestAnimationFrame(function(){setTimeout(function(){var s=document.createElement('script');s.textContent=document.getElementById('app-js').textContent;document.body.appendChild(s)},0)})})</script><div id="aviso-movil" hidden style="position:fixed;inset:0;z-index:2147483000;background:rgba(23,22,19,.55);display:flex;align-items:center;justify-content:center;padding:20px">
+<script>
+/* Domingo Lite se abre con la preventa. Para probarla antes: añade #prueba-lite a la dirección. */
+var LITE_APERTURA = new Date('2026-11-15T00:00:00-06:00').getTime();
+var LITE_ABIERTA = Date.now() >= LITE_APERTURA || location.hash === '#prueba-lite';
+</script>
+<div id="lite-cerrada" hidden style="position:fixed;inset:0;z-index:2147483600;background:#F8F3E4;color:#2A211A;display:flex;align-items:center;justify-content:center;padding:28px;font-family:'Newsreader',Georgia,serif;text-align:center">
+<div style="max-width:560px">
+<img src="../img/logo.png" alt="" width="150" height="94" style="width:150px;height:auto;margin:0 auto 18px;display:block">
+<div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:#B4441F;font-weight:600">Domingo Lite</div>
+<h1 style="font-weight:400;font-size:clamp(34px,6vw,52px);line-height:1.08;margin:14px 0 12px">Abre el domingo 15 de noviembre</h1>
+<p style="font-size:20px;color:#5D493A;margin:0 0 26px">Ese día empieza la preventa y podrás probar Domingo en tu navegador, sin instalar nada.</p>
+<div id="lc-reloj" style="display:flex;gap:10px;justify-content:center;margin:0 0 30px;font-family:'Instrument Sans',system-ui,sans-serif"></div>
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;font-family:'Instrument Sans',system-ui,sans-serif;font-size:16px">
+<a href="../" style="background:#1D4B45;color:#F8F3E4;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:4px">Conocer Domingo</a>
+<a href="https://www.instagram.com/domingo.app/" target="_blank" rel="noopener" style="color:#1D4B45;border:1.5px solid #1D4B45;text-decoration:none;font-weight:600;padding:11px 20px;border-radius:4px">Seguir en Instagram</a>
+</div></div></div>
+<script>
+if (!LITE_ABIERTA) {
+  document.documentElement.classList.remove('arr');
+  var lc = document.getElementById('lite-cerrada'); lc.hidden = false;
+  var dos = function (n) { return String(n).padStart(2, '0'); };
+  var caja = function (v, t) { return '<div style="min-width:70px;padding:10px 6px;border:1.5px solid #2A211A;border-radius:4px;background:#FBF8EE"><div style="font-family:Newsreader,Georgia,serif;font-size:34px;line-height:1">' + v + '</div><div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#5D493A;margin-top:4px">' + t + '</div></div>'; };
+  var tic = function () {
+    var r = LITE_APERTURA - Date.now();
+    if (r <= 0) return location.reload();
+    document.getElementById('lc-reloj').innerHTML = caja(dos(Math.floor(r / 864e5)), 'días') + caja(dos(Math.floor(r % 864e5 / 36e5)), 'horas') + caja(dos(Math.floor(r % 36e5 / 6e4)), 'min') + caja(dos(Math.floor(r % 6e4 / 1e3)), 'seg');
+  };
+  tic(); setInterval(tic, 1000);
+}
+</script>
+<script>if(LITE_ABIERTA){requestAnimationFrame(function(){requestAnimationFrame(function(){setTimeout(function(){var s=document.createElement('script');s.textContent=document.getElementById('app-js').textContent;document.body.appendChild(s)},0)})})}</script><div id="aviso-movil" hidden style="position:fixed;inset:0;z-index:2147483000;background:rgba(23,22,19,.55);display:flex;align-items:center;justify-content:center;padding:20px">
 <div style="background:#fbf9f4;color:#23201c;max-width:380px;padding:26px 24px;border-radius:10px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:16px;line-height:1.5;box-shadow:0 20px 50px rgba(0,0,0,.35)">
 <div style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:28px;margin-bottom:8px">Domingo Lite</div>
 <p style="margin:0 0 18px">Domingo es una app para computadora. En una pantalla chica cabe, pero se disfruta mucho mejor en una laptop o de escritorio.</p>
@@ -25609,5 +25639,5 @@ document.documentElement.classList.remove('arr');
 <button id="aviso-seguir" type="button" style="font:inherit;font-weight:600;background:#1f4d46;color:#fff;border:0;border-radius:6px;padding:10px 16px;cursor:pointer">Probar de todos modos</button>
 <a href="../" style="font:inherit;color:#1f4d46;padding:10px 6px;text-decoration:underline">Volver al sitio</a>
 </div></div></div>
-<script>(function(){try{if(matchMedia('(max-width: 760px)').matches&&!sessionStorage.getItem('lite-movil')){var a=document.getElementById('aviso-movil');a.hidden=false;document.getElementById('aviso-seguir').onclick=function(){a.remove();try{sessionStorage.setItem('lite-movil','1')}catch(e){}}}}catch(e){}})()</script>
+<script>(function(){try{if(window.LITE_ABIERTA&&matchMedia('(max-width: 760px)').matches&&!sessionStorage.getItem('lite-movil')){var a=document.getElementById('aviso-movil');a.hidden=false;document.getElementById('aviso-seguir').onclick=function(){a.remove();try{sessionStorage.setItem('lite-movil','1')}catch(e){}}}}catch(e){}})()</script>
 </body></html>

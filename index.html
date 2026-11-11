@@ -293,7 +293,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
         <p class="entrada">Un estudio de escritura en español para quien quiere terminar lo que empezó. Tu novela, tu tesis, tu guion o tu diario, en un solo archivo que es tuyo.</p>
         <div class="acciones">
           <a class="boton primario" data-cta href="#precio">Comprar Domingo</a>
-          <a class="boton secundario" href="probar/">Pruébalo gratis</a>
+          <a class="boton secundario" data-lite href="probar/">Pruébalo gratis</a>
         </div>
         <div class="sistemas">Para macOS y Windows · Funciona sin conexión · Pago único</div>
       </div>
@@ -469,7 +469,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
       </div>
     </div>
     <div class="acciones">
-      <a class="boton primario" href="probar/">Abrir Domingo Lite</a>
+      <a class="boton primario" data-lite href="probar/">Abrir Domingo Lite</a>
     </div>
     <p class="nota-lite">Mejor en computadora. Lo que escribes se queda en tu navegador; guárdalo como .mingo para no perderlo.</p>
   </div>
@@ -711,6 +711,13 @@ const FUNCIONES = [
     const bc = $("#boton-comprar");
     if (!destino){ bc.setAttribute("aria-disabled","true"); bc.textContent = f === "antes" ? "Disponible el 15 de noviembre" : "Muy pronto"; }
 
+    /* Domingo Lite abre con la preventa */
+    const liteAbierta = f !== "antes";
+    document.querySelectorAll("[data-lite]").forEach(a => {
+      if (!a.dataset.texto) a.dataset.texto = a.textContent;
+      if (liteAbierta){ a.href = "probar/"; a.removeAttribute("aria-disabled"); a.textContent = a.dataset.texto; }
+      else { a.href = "#probar"; a.setAttribute("aria-disabled","true"); a.textContent = a.closest(".portada") ? "Pruébalo desde el 15" : "Disponible el domingo 15 de noviembre"; }
+    });
     /* Descargas */
     const abiertas = Date.now() >= T(CONFIG.descargas) || location.hash === "#prueba-venta";
     [["#descarga-mac", CONFIG.descargaMac], ["#descarga-win", CONFIG.descargaWin]].forEach(([sel, url]) => {
