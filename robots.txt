@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /firma/
 Sitemap: https://domingo-app.com.mx/sitemap.xml

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Firma de correo · Domingo</title>
+<link rel="icon" type="image/png" href="../img/icono-32.png">
+<style>
+body{margin:0;background:#F8F3E4;color:#2A211A;font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.5}
+main{max-width:760px;margin:0 auto;padding:56px 24px}
+h1{font-weight:400;font-size:40px;margin:0 0 8px}
+p{color:#5D493A}
+.lienzo{background:#fff;border:1.5px solid #2A211A;padding:28px;margin:28px 0;overflow-x:auto}
+button{font:inherit;font-size:17px;background:#1D4B45;color:#F8F3E4;border:0;border-radius:4px;padding:12px 22px;cursor:pointer}
+ol{color:#5D493A;padding-left:22px} li{margin:6px 0}
+#ok{margin-left:12px;color:#1D4B45}
+</style>
+</head>
+<body>
+<main>
+<h1>Firma de correo</h1>
+<p>Pulsa el botón para copiar la firma y pégala en la configuración de tu correo.</p>
+<div class="lienzo" id="firma">
+<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse: collapse; font-family: Georgia, 'Times New Roman', serif; color: #2A211A;">
+  <tr>
+    <td style="padding: 4px 18px 4px 0; border-right: 2px solid #B4441F; vertical-align: middle;">
+      <a href="https://domingo-app.com.mx" style="text-decoration: none;">
+        <img src="https://domingo-app.com.mx/firma/domingo-logo-firma.png" width="96" height="60" alt="Domingo" style="display: block; border: 0; width: 96px; height: 60px;">
+      </a>
+    </td>
+    <td style="padding: 4px 0 4px 18px; vertical-align: middle;">
+      <div style="font-size: 18px; line-height: 22px; color: #2A211A;">Emilio Saldaña</div>
+      <div style="font-size: 14px; line-height: 20px; font-style: italic; color: #5D493A;">Creador de Domingo</div>
+      <div style="font-size: 14px; line-height: 22px; font-style: italic; color: #B4441F; padding-top: 2px;">Escribe como si fuera domingo.</div>
+      <div style="font-size: 13px; line-height: 20px; padding-top: 6px; color: #5D493A;">
+        <a href="mailto:contacto@domingo-app.com.mx" style="color: #1D4B45; text-decoration: none;">contacto@domingo-app.com.mx</a>
+        &nbsp;·&nbsp;
+        <a href="https://domingo-app.com.mx" style="color: #1D4B45; text-decoration: none;">domingo-app.com.mx</a>
+        &nbsp;·&nbsp;
+        <a href="https://instagram.com/domingo.app" style="color: #1D4B45; text-decoration: none;">@domingo.app</a>
+      </div>
+    </td>
+  </tr>
+</table>
+</div>
+<button type="button" id="copiar">Copiar firma</button><span id="ok" role="status"></span>
+<ol>
+<li>Gmail: Configuración › Ver toda la configuración › General › Firma › Crear nueva.</li>
+<li>Pega con Cmd+V o Ctrl+V. Si el logo no aparece al instante, espera unos segundos.</li>
+<li>Elige la firma en «Para correos nuevos» y «Para respuestas» y guarda los cambios al final de la página.</li>
+</ol>
+</main>
+<script>
+document.getElementById('copiar').addEventListener('click', async function () {
+  var nodo = document.getElementById('firma'), ok = document.getElementById('ok');
+  try {
+    var html = nodo.innerHTML.trim();
+    await navigator.clipboard.write([new ClipboardItem({'text/html': new Blob([html], {type:'text/html'}), 'text/plain': new Blob([nodo.innerText], {type:'text/plain'})})]);
+    ok.textContent = 'Copiada';
+  } catch (e) {
+    var r = document.createRange(); r.selectNodeContents(nodo);
+    var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    try { document.execCommand('copy'); ok.textContent = 'Copiada'; } catch (e2) { ok.textContent = 'Selecciónala y copia con Cmd+C'; }
+    s.removeAllRanges();
+  }
+});
+</script>
+</body>
+</html>
