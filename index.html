@@ -24,6 +24,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 
+<script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -591,7 +593,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
   </div>
   <details>
     <summary>Privacidad</summary>
-    <p>Este sitio no usa cookies, formularios ni herramientas de rastreo. Si me escribes por correo, uso tu dirección solo para responderte. Los pagos los procesa Lemon Squeezy, que recibe los datos necesarios para cobrar y enviarte tu licencia. La app Domingo no envía tus textos a ningún servidor.</p>
+    <p>Este sitio no usa cookies propias, formularios ni herramientas de rastreo. Si me escribes por correo, uso tu dirección solo para responderte. Los pagos los procesa Lemon Squeezy en una ventana segura que se abre sobre esta página; Lemon Squeezy recibe los datos necesarios para cobrar y enviarte tu licencia, y puede usar una cookie de sesión durante el pago. La app Domingo no envía tus textos a ningún servidor.</p>
   </details>
 </footer>
 
@@ -666,12 +668,21 @@ const FUNCIONES = [
     return "venta";
   }
 
+  /* El pago se abre en una ventana de Lemon Squeezy sobre la página (lemon.js, embed=1) */
   function enlaceCompra(conCodigo){
     if (!CONFIG.checkout) return "";
-    if (!conCodigo) return CONFIG.checkout;
-    const sep = CONFIG.checkout.includes("?") ? "&" : "?";
-    return CONFIG.checkout + sep + "checkout%5Bdiscount_code%5D=" + encodeURIComponent(CONFIG.codigo);
+    const u = new URL(CONFIG.checkout);
+    u.searchParams.set("embed", "1");
+    if (conCodigo) u.searchParams.set("checkout[discount_code]", CONFIG.codigo);
+    return u.toString();
   }
+  let ultimoDestino = null;
+  function refrescarLemon(destino){
+    if (destino === ultimoDestino) return;
+    ultimoDestino = destino;
+    if (window.LemonSqueezy && LemonSqueezy.Refresh) LemonSqueezy.Refresh();
+  }
+  window.addEventListener("load", () => { ultimoDestino = null; });
 
   function pintar(){
     const f = fase();
@@ -705,9 +716,10 @@ const FUNCIONES = [
     }
 
     ctas.forEach(a => {
-      if (destino){ a.href = destino; a.removeAttribute("aria-disabled"); a.textContent = a.closest(".barra") ? "Comprar" : texto; }
-      else { a.href = "#precio"; a.textContent = a.closest(".barra") ? "Comprar" : (f === "antes" ? texto : "Muy pronto"); }
+      if (destino){ a.href = destino; a.classList.add("lemonsqueezy-button"); a.removeAttribute("aria-disabled"); a.textContent = a.closest(".barra") ? "Comprar" : texto; }
+      else { a.classList.remove("lemonsqueezy-button"); a.href = "#precio"; a.textContent = a.closest(".barra") ? "Comprar" : (f === "antes" ? texto : "Muy pronto"); }
     });
+    refrescarLemon(destino);
     const bc = $("#boton-comprar");
     if (!destino){ bc.setAttribute("aria-disabled","true"); bc.textContent = f === "antes" ? "Disponible el 15 de noviembre" : "Muy pronto"; }
 
