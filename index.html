@@ -24,8 +24,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 
-<script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -218,7 +216,6 @@ footer .marca img{width:44px}
 .limites{list-style:none;padding:0;margin:22px 0 0}
 .limites li{padding:9px 0 9px 30px;border-bottom:1px dashed var(--linea);position:relative;font-size:19px;color:var(--cafe)}
 .limites li::before{content:"";position:absolute;left:4px;top:21px;width:12px;height:2px;background:var(--terracota)}
-.nota-apartar{margin:14px 0 0;max-width:560px;font-size:17px;line-height:1.45;color:var(--cafe);border-left:3px solid var(--ocre);padding:2px 0 2px 14px}
 .nota-lite{margin-top:14px;font-size:16px;color:var(--cafe)}
 @media (max-width:760px){.lite{grid-template-columns:1fr}.lite>div+div{border-left:0;border-top:1.5px solid var(--tinta)}.lite>div{padding:26px 24px}}
 /* Descargas */
@@ -298,7 +295,6 @@ footer summary{cursor:pointer;color:#d8ccb4}
           <a class="boton primario" data-cta href="#precio">Comprar Domingo</a>
           <a class="boton secundario" data-lite href="probar/">Pruébalo gratis</a>
         </div>
-        <p class="nota-apartar" data-nota-apartar hidden></p>
         <div class="sistemas">Para macOS y Windows · Funciona sin conexión · Pago único</div>
       </div>
 
@@ -503,16 +499,15 @@ footer summary{cursor:pointer;color:#d8ccb4}
         <div class="acciones">
           <a class="boton primario" data-cta id="boton-comprar" href="#">Comprar</a>
         </div>
-        <p class="nota-apartar" data-nota-apartar hidden></p>
-        <p style="font-size:15px;color:var(--cafe);margin-top:14px" id="nota-pago">El pago se procesa de forma segura con Lemon Squeezy. Recibirás tu clave de licencia por correo.</p>
+        <p style="font-size:15px;color:var(--cafe);margin-top:14px" id="nota-pago">El pago se abre en una ventana segura de Polar sobre esta página. Recibirás tu clave de licencia por correo.</p>
       </div>
       <div class="der">
         <div class="versal" style="color:var(--terracota)">Preventa</div>
-        <h3 style="font-size:34px;margin:10px 0 12px">Del 15 al 22 de noviembre</h3>
-        <p id="preventa-texto">Las primeras 10 personas que compren durante la preventa pagan <b>$399 MXN</b>. Usa este código al pagar:</p>
-        <button class="codigo" id="codigo" type="button" title="Copiar código">MANGO</button>
-        <p style="font-size:16px;color:var(--cafe)">Toca el código para copiarlo. Cuando se agoten los 10 lugares, el precio vuelve a $499.</p>
-        <p class="mano" style="margin-top:18px">El Mango es el botón de inspiración de la app. Por eso el código.</p>
+        <h3 style="font-size:34px;margin:10px 0 12px" id="preventa-titulo">Del 15 al 22 de noviembre</h3>
+        <p id="preventa-texto">Las primeras 10 personas que compren durante la preventa pagan <b>$399 MXN</b>. El código ya va incluido en el botón de compra:</p>
+        <div id="preventa-codigo"><button class="codigo" id="codigo" type="button" title="Copiar código">MANGO</button>
+        <p style="font-size:16px;color:var(--cafe)">No tienes que escribirlo: se aplica solo al pagar. Cuando se agoten los 10 lugares, el precio vuelve a $499.</p>
+        <p class="mano" style="margin-top:18px">El Mango es el botón de inspiración de la app. Por eso el código.</p></div>
       </div>
     </div>
   </div>
@@ -596,7 +591,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
   </div>
   <details>
     <summary>Privacidad</summary>
-    <p>Este sitio no usa cookies propias, formularios ni herramientas de rastreo. Si me escribes por correo, uso tu dirección solo para responderte. Los pagos los procesa Lemon Squeezy en una ventana segura que se abre sobre esta página; Lemon Squeezy recibe los datos necesarios para cobrar y enviarte tu licencia, y puede usar una cookie de sesión durante el pago. La app Domingo no envía tus textos a ningún servidor.</p>
+    <p>Este sitio no usa cookies propias, formularios ni herramientas de rastreo. Si me escribes por correo, uso tu dirección solo para responderte. Los pagos los procesa Polar en una ventana segura que se abre sobre esta página; Polar recibe los datos necesarios para cobrar y enviarte tu licencia, y puede usar cookies propias durante el pago. La app Domingo no envía tus textos a ningún servidor.</p>
   </details>
 </footer>
 
@@ -607,18 +602,18 @@ footer summary{cursor:pointer;color:#d8ccb4}
    CONFIGURACIÓN · lo único que necesitas editar
    ============================================================ */
 const CONFIG = {
-  // Enlace de compra de Lemon Squeezy (Store > Products > Share). Si está vacío, el botón dice "Muy pronto".
-  checkout: "",
-  // Plan B: mientras la tienda no esté aprobada, el botón lleva al formulario para apartar lugar.
-  // Cámbialo a true cuando Lemon Squeezy apruebe la tienda: el botón vuelve a ser la compra con MANGO.
-  tiendaAbierta: false,
-  apartar: "https://forms.gle/xsMMzSDDmU7tF2dG8",
+  // Enlaces de compra de Polar. El pago se abre sobre el sitio, con tema claro.
+  // Preventa (ya incluye el código MANGO) hasta el 22 de noviembre a las 23:59; venta desde el 23.
+  checkoutPreventa: "https://buy.polar.sh/polar_cl_9hj7qkpe0u4ZlLj2QggbKz6zzjJ4KeN9v4ZDq0RdbRq",
+  checkoutVenta:    "https://buy.polar.sh/polar_cl_whcDHK2vUrVFwJDrdAdMXPNLgvHJ8XazWONUk0xSvaQ",
   // Enlaces directos a los instaladores. Si están vacíos, los botones quedan desactivados.
   descargaMac: "https://github.com/emiliosalmen/domingo-descargas/releases/latest/download/Domingo-mac.dmg",
   descargaWin: "https://github.com/emiliosalmen/domingo-descargas/releases/latest/download/Domingo-windows.exe",
   // Fechas en hora de Monterrey (UTC-6)
   preventa:    "2026-11-15T00:00:00-06:00",
   lanzamiento: "2026-11-22T00:00:00-06:00",
+  // El precio de preventa sigue hasta el 22 a las 23:59 (el 23 a las 00:00 cambia a venta)
+  finPreventa: "2026-11-23T00:00:00-06:00",
   // Cuándo se habilitan las descargas (por defecto, el día del lanzamiento)
   descargas:   "2026-11-22T00:00:00-06:00",
   codigo: "MANGO",
@@ -663,41 +658,28 @@ const FUNCIONES = [
   }
   elegir(0);
 
-  /* Fase de venta. Para revisar cada fase: añade #prueba-preventa o #prueba-venta a la dirección */
+  /* Fase de venta. Para revisar: #prueba-antes, #prueba-preventa, #prueba-ultimo-dia (22 de noviembre) o #prueba-venta */
   function fase(){
     const h = location.hash;
     if (h === "#prueba-antes") return "antes";
     if (h === "#prueba-preventa") return "preventa";
-    if (h === "#prueba-venta") return "venta";
+    if (h === "#prueba-ultimo-dia" || h === "#prueba-venta") return "venta";
     const n = Date.now();
     if (n < T(CONFIG.preventa)) return "antes";
     if (n < T(CONFIG.lanzamiento)) return "preventa";
     return "venta";
   }
-
-  /* El pago se abre en una ventana de Lemon Squeezy sobre la página (lemon.js, embed=1) */
-  function enlaceCompra(conCodigo){
-    if (!CONFIG.checkout) return "";
-    const u = new URL(CONFIG.checkout);
-    u.searchParams.set("embed", "1");
-    if (conCodigo) u.searchParams.set("checkout[discount_code]", CONFIG.codigo);
-    return u.toString();
+  /* ¿Sigue el precio de preventa? Hasta el 22 a las 23:59 */
+  function preventaVigente(){
+    const h = location.hash;
+    if (h === "#prueba-preventa" || h === "#prueba-ultimo-dia") return true;
+    if (h === "#prueba-venta") return false;
+    const n = Date.now();
+    return n >= T(CONFIG.preventa) && n < T(CONFIG.finPreventa);
   }
-  let ultimoDestino = null;
-  function refrescarLemon(destino){
-    if (destino === ultimoDestino) return;
-    ultimoDestino = destino;
-    if (window.LemonSqueezy && LemonSqueezy.Refresh) LemonSqueezy.Refresh();
-  }
-  window.addEventListener("load", () => { ultimoDestino = null; });
-
-  /* Plan B: tienda sin aprobar. El botón lleva al formulario para apartar lugar, en otra pestaña. */
-  const NOTA_APARTAR = "La tienda abre en unos días. Los primeros 10 en apartar pagan " + CONFIG.precioPreventa + " MXN en lugar de " + CONFIG.precio + ". Te escribo con tu enlace en cuanto abra.";
-  const NOTA_AVISAR = "La tienda abre en unos días. Déjame tus datos y te escribo con tu enlace en cuanto abra.";
 
   function pintar(){
-    const f = fase();
-    const planB = !CONFIG.tiendaAbierta && f !== "antes";
+    const f = fase(), pv = preventaVigente();
     const estado = $("#cuenta-estado"), titulo = $("#cuenta-titulo"), nota = $("#cuenta-nota");
     const ctas = document.querySelectorAll("[data-cta]");
     let destino = "", texto = "Comprar";
@@ -711,55 +693,50 @@ const FUNCIONES = [
     } else if (f === "preventa"){
       estado.textContent = "Preventa abierta";
       titulo.textContent = "Domingo llega en domingo, el 22 de noviembre";
-      nota.innerHTML = planB
-        ? "Aparta tu lugar: las primeras 10 personas pagan $" + CONFIG.precioPreventa + " MXN en lugar de $" + CONFIG.precio + "."
-        : "Ahora: $" + CONFIG.precioPreventa + " MXN para las primeras 10 personas con el código <b>" + CONFIG.codigo + "</b>.";
+      nota.innerHTML = "Ahora: $" + CONFIG.precioPreventa + " MXN para las primeras 10 personas con el código <b>" + CONFIG.codigo + "</b>, ya incluido al pagar.";
       $("#reloj").hidden = false;
-      destino = enlaceCompra(true);
       texto = "Comprar en preventa";
-      $("#precio-antes").hidden = false;
-      $("#precio-num").textContent = CONFIG.precioPreventa;
-      $("#precio-texto").textContent = planB
-        ? "Precio de preventa para las primeras 10 personas que aparten su lugar."
-        : "Precio de preventa con el código " + CONFIG.codigo + ", solo para las primeras 10 personas.";
     } else {
       estado.textContent = "Ya disponible";
       titulo.textContent = "Domingo ya está aquí";
-      nota.innerHTML = "$" + CONFIG.precio + " MXN, pago único. Licencia para 2 equipos.";
+      nota.innerHTML = pv
+        ? "Hoy es el último día de preventa: $" + CONFIG.precioPreventa + " MXN para las primeras 10 personas, hasta las 23:59."
+        : "$" + CONFIG.precio + " MXN, pago único. Licencia para 2 equipos.";
       $("#reloj").hidden = true;
-      destino = enlaceCompra(false);
-      texto = "Comprar Domingo";
+      texto = pv ? "Comprar en preventa" : "Comprar Domingo";
     }
 
-    /* Plan B */
-    const notasB = document.querySelectorAll("[data-nota-apartar]");
-    $("#nota-pago").hidden = planB;
-    $("#faq-preventa").textContent = planB
-      ? "Del domingo 15 al domingo 22 de noviembre puedes apartar tu lugar con el formulario. Las primeras 10 personas que aparten pagan $" + CONFIG.precioPreventa + " MXN en lugar de $" + CONFIG.precio + ". En cuanto abra la tienda te escribo con tu enlace de compra."
-      : "Del domingo 15 al domingo 22 de noviembre, las primeras 10 personas que usen el código " + CONFIG.codigo + " al pagar obtienen Domingo por $" + CONFIG.precioPreventa + " MXN. Después el precio es $" + CONFIG.precio + " MXN.";
-    $("#preventa-texto").innerHTML = planB
-      ? "Las primeras 10 personas que aparten su lugar durante la preventa pagan <b>$" + CONFIG.precioPreventa + " MXN</b>. Cuando abra la tienda, este será tu código:"
-      : "Las primeras 10 personas que compren durante la preventa pagan <b>$" + CONFIG.precioPreventa + " MXN</b>. Usa este código al pagar:";
-    if (planB){
-      const textoB = f === "preventa" ? "Aparta tu lugar" : "Avísame cuando abra";
-      ctas.forEach(a => {
-        a.href = CONFIG.apartar; a.target = "_blank"; a.rel = "noopener";
-        a.classList.remove("lemonsqueezy-button"); a.removeAttribute("aria-disabled");
-        a.textContent = textoB;
-      });
-      notasB.forEach(n => { n.textContent = f === "preventa" ? NOTA_APARTAR : NOTA_AVISAR; n.hidden = false; });
-      refrescarLemon("");
-    } else {
-    notasB.forEach(n => n.hidden = true);
-    ctas.forEach(a => { a.removeAttribute("target"); a.removeAttribute("rel"); });
+    /* Precio y enlace de compra */
+    if (f !== "antes") destino = pv ? CONFIG.checkoutPreventa : CONFIG.checkoutVenta;
+    $("#precio-antes").hidden = !pv;
+    $("#precio-num").textContent = pv ? CONFIG.precioPreventa : CONFIG.precio;
+    $("#precio-texto").textContent = pv
+      ? "Precio de preventa con el código " + CONFIG.codigo + ", ya incluido, solo para las primeras 10 personas."
+      : "Pago único, licencia de por vida.";
+    const terminada = f !== "antes" && !pv;
+    $("#preventa-titulo").textContent = terminada ? "Terminó el 22 de noviembre" : "Del 15 al 22 de noviembre";
+    $("#preventa-texto").innerHTML = terminada
+      ? "Gracias a quienes compraron en preventa. Ahora Domingo cuesta <b>$" + CONFIG.precio + " MXN</b>, pago único."
+      : "Las primeras 10 personas que compren durante la preventa pagan <b>$" + CONFIG.precioPreventa + " MXN</b>. El código ya va incluido en el botón de compra:";
+    $("#preventa-codigo").hidden = terminada;
+    $("#faq-preventa").textContent = "Del domingo 15 al domingo 22 de noviembre a las 23:59, las primeras 10 personas que compren obtienen Domingo por $" + CONFIG.precioPreventa + " MXN. El código " + CONFIG.codigo + " ya va incluido en el botón de compra. Después el precio es $" + CONFIG.precio + " MXN.";
+
+    /* Botones: el pago se abre con Polar sobre la página. Si su script no carga, son enlaces normales. */
     ctas.forEach(a => {
-      if (destino){ a.href = destino; a.classList.add("lemonsqueezy-button"); a.removeAttribute("aria-disabled"); a.textContent = a.closest(".barra") ? "Comprar" : texto; }
-      else { a.classList.remove("lemonsqueezy-button"); a.href = "#precio"; a.textContent = a.closest(".barra") ? "Comprar" : (f === "antes" ? texto : "Muy pronto"); }
+      if (destino){
+        a.href = destino;
+        a.setAttribute("data-polar-checkout", "");
+        a.setAttribute("data-polar-checkout-theme", "light");
+        a.removeAttribute("aria-disabled");
+        a.textContent = a.closest(".barra") ? "Comprar" : texto;
+      } else {
+        a.href = "#precio";
+        a.removeAttribute("data-polar-checkout");
+        a.removeAttribute("data-polar-checkout-theme");
+        a.setAttribute("aria-disabled", "true");
+        a.textContent = a.closest(".barra") ? "Comprar" : texto;
+      }
     });
-    refrescarLemon(destino);
-    const bc = $("#boton-comprar");
-    if (!destino){ bc.setAttribute("aria-disabled","true"); bc.textContent = f === "antes" ? "Disponible el 15 de noviembre" : "Muy pronto"; }
-    }
 
     /* Domingo Lite abre con la preventa */
     const liteAbierta = f !== "antes";
@@ -769,7 +746,7 @@ const FUNCIONES = [
       else { a.href = "#probar"; a.setAttribute("aria-disabled","true"); a.textContent = a.closest(".portada") ? "Pruébalo desde el 15" : "Disponible el domingo 15 de noviembre"; }
     });
     /* Descargas */
-    const abiertas = Date.now() >= T(CONFIG.descargas) || location.hash === "#prueba-venta";
+    const abiertas = Date.now() >= T(CONFIG.descargas) || location.hash === "#prueba-venta" || location.hash === "#prueba-ultimo-dia";
     [["#descarga-mac", CONFIG.descargaMac], ["#descarga-win", CONFIG.descargaWin]].forEach(([sel, url]) => {
       const a = $(sel);
       if (abiertas && url){ a.href = url; a.removeAttribute("aria-disabled"); }
@@ -845,5 +822,6 @@ const FUNCIONES = [
   } else document.querySelectorAll(".aparece").forEach(el => el.classList.add("visto"));
 })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.1/dist/embed.global.js" defer data-auto-init></script>
 </body>
 </html>
