@@ -24,6 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Lora:ital,wght@0,400;0,600;1,400&family=Arsenal+SC:wght@400;700&family=Nothing+You+Could+Do&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;600&family=Gloock&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@400;600;800&family=Young+Serif&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -229,10 +230,8 @@ footer .marca img{width:44px}
 .nota-lite{margin-top:14px;font-size:16px;color:var(--cafe)}
 @media (max-width:760px){.lite{grid-template-columns:1fr}.lite>div+div{border-left:0;border-top:1.5px solid var(--tinta)}.lite>div{padding:26px 24px}}
 /* Convocatoria */
-.aviso-conv{background:var(--terracota);color:var(--crema);font-size:17px;line-height:1.35}
+.aviso-conv{line-height:1.35}
 .aviso-conv .envoltura{display:flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding-top:8px;padding-bottom:8px;text-align:center;flex-wrap:wrap}
-.aviso-conv b{font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:13px;color:var(--amarillo)}
-.aviso-conv a{color:var(--crema);font-weight:600}
 .conv{display:grid;grid-template-columns:1.15fr .85fr;border:1.5px solid var(--tinta);border-radius:6px;overflow:hidden;background:var(--papel)}
 .conv>div{padding:42px}
 .conv .lado{background:var(--verde);color:var(--crema);border-left:1.5px solid var(--tinta);position:relative;overflow:hidden}
@@ -244,6 +243,174 @@ footer .marca img{width:44px}
 .conv-pasos li::before{content:counter(c);position:absolute;left:0;top:6px;font-family:var(--titulo);font-size:38px;color:var(--terracota)}
 .conv-nota{font-size:16px;color:var(--cafe);margin-top:16px}
 @media (max-width:860px){.conv{grid-template-columns:1fr}.conv .lado{border-left:0;border-top:1.5px solid var(--tinta)}.conv>div{padding:28px}.conv .num{font-size:110px}}
+
+/* ============================================================
+   Cada sección se viste con uno de los estilos de la app
+   ============================================================ */
+.est{position:relative;background:var(--crema);color:var(--tinta);font-family:var(--texto);overflow:hidden;isolation:isolate}
+.bloque.est + .bloque, .bloque + .bloque.est{border-top:0}
+.est .boton{font-family:var(--fui,var(--texto));border-radius:var(--radio,3px)}
+.est .boton.primario{background:var(--verde);border-color:var(--verde);color:var(--crema-boton,var(--crema))}
+.est .boton.secundario{color:var(--verde);border-color:var(--verde)}
+.est .boton.secundario:hover{background:var(--verde);color:var(--crema-boton,var(--crema))}
+.est .versal{font-family:var(--fui,var(--texto))}
+.tag-estilo{position:absolute;top:26px;right:28px;z-index:5;font:600 12px/1 var(--fui,var(--texto));letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cafe);background:color-mix(in srgb,var(--crema) 70%,transparent);border:1px solid var(--linea);border-radius:var(--radio-tag,999px);padding:8px 12px 7px;cursor:pointer;transition:background .2s,color .2s}
+.tag-estilo:hover{background:var(--tinta);color:var(--crema)}
+.tag-estilo::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--terracota);margin-right:8px;vertical-align:1px}
+@media (max-width:620px){.tag-estilo{top:16px;right:16px;font-size:10px}}
+.portada{position:relative}
+
+/* Japandi · Funciones */
+.est-japandi{--crema:#e6e7e2;--papel:#f3f4f0;--tinta:#2f312d;--cafe:#5b5f57;--verde:#3f4a3c;--verde-2:#2c3529;--terracota:#9a7b5c;--ocre:#b9a27f;--linea:#c9cbc3;
+  --titulo:'Outfit',system-ui,sans-serif;--texto:'Lora',Georgia,serif;--fui:'Outfit',system-ui,sans-serif;--radio:0}
+.est-japandi h2{font-weight:300;letter-spacing:-.02em}
+.est-japandi h3{font-weight:400;font-size:24px}
+.est-japandi .filete{height:1px;width:120px;background:var(--tinta)}
+.est-japandi .ventana{border:1px solid var(--linea);border-radius:2px;box-shadow:0 40px 70px -40px rgba(47,49,45,.45)}
+.est-japandi .ventana .franja{background:var(--papel)}
+.est-japandi .pestanas button{font-family:var(--fui);border:0;border-radius:0;border-bottom:1px solid transparent;padding:6px 2px;margin-right:14px;letter-spacing:.04em}
+.est-japandi .pestanas button[aria-selected="true"]{background:transparent;color:var(--tinta);border-bottom-color:var(--tinta)}
+.est-japandi .secciones article{background:transparent;border:0;border-top:1px solid var(--tinta);border-radius:0;padding:22px 0 0}
+.est-japandi::before{content:"";position:absolute;right:-180px;top:-160px;width:560px;height:560px;border-radius:50%;border:1px solid var(--linea);z-index:-1}
+.est-japandi::after{content:"";position:absolute;right:120px;top:90px;width:120px;height:120px;border-radius:50%;background:#d9cdb7;opacity:.55;z-index:-1}
+
+/* Acanthus · Estilos */
+.est-acanthus{--crema:#e9e8d2;--papel:#18261e;--tinta:#e9e8d2;--cafe:#c9ccb3;--verde:#121d17;--amarillo:#d8c27e;--ocre:#a8894a;--terracota:#b4495a;--linea:#3b4c3f;
+  --titulo:'Arsenal SC',Georgia,serif;--texto:'Lora',Georgia,serif;background:radial-gradient(90% 70% at 50% 0%,#1d3026,#121d17 60%,#0c1410)!important}
+.est-acanthus h2{letter-spacing:.02em}
+.est-acanthus .cabeza{text-align:center;margin-left:auto;margin-right:auto}
+.est-acanthus .cabeza .filete{margin-left:auto;margin-right:auto;width:180px;height:9px;background:none;
+  border-top:1px solid var(--amarillo);border-bottom:1px solid var(--amarillo)}
+.est-acanthus .envoltura{position:relative}
+.est-acanthus::before{content:"";position:absolute;inset:28px;border:1px solid rgba(216,194,126,.35);outline:1px solid rgba(216,194,126,.18);outline-offset:6px;pointer-events:none;z-index:0}
+.est-acanthus .marco-estilo{box-shadow:0 30px 60px -30px rgba(0,0,0,.7),0 0 0 6px #121d17,0 0 0 7px var(--amarillo)!important}
+.est-acanthus .chips button[aria-pressed="true"]{background:#7a2e3a;border-color:#7a2e3a;color:#f3e9d2}
+.est-acanthus .pie-estilo{font-family:'Lora',serif;font-style:italic;font-size:22px;text-align:center}
+.est-acanthus .tag-estilo{background:rgba(12,20,16,.8);color:var(--amarillo);border-color:rgba(216,194,126,.45)}
+.est-acanthus .tag-estilo:hover{background:var(--amarillo);color:#121d17}
+.est-acanthus .selector{justify-items:center}
+.est-acanthus .grupo{grid-template-columns:auto;justify-items:center;text-align:center}
+.est-acanthus .chips{justify-content:center}
+
+/* Boceto · Para quién */
+.est-boceto{--crema:#dde2e6;--papel:#ffffff;--tinta:#2b2d31;--cafe:#4a4e55;--terracota:#c0392b;--verde:#2b2d31;--verde-2:#000;--ocre:#c0392b;--linea:#aab3bb;
+  --titulo:'Nothing You Could Do','Segoe Print',cursive;--texto:'DM Mono',ui-monospace,monospace;--fui:'DM Mono',monospace;--radio:5px 11px 6px 10px / 10px 5px 11px 6px;
+  background-color:#dde2e6;background-image:linear-gradient(rgba(43,45,49,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(43,45,49,.07) 1px,transparent 1px);background-size:28px 28px;font-size:16.5px}
+.est-boceto h2{font-size:clamp(40px,5vw,60px);line-height:1.15}
+.est-boceto .filete{height:0;border:0;border-top:3px dashed var(--terracota);width:110px}
+.est-boceto .mano{font-family:'Nothing You Could Do',cursive;font-size:23px;color:var(--terracota)}
+.est-boceto .ventana{border:2px solid var(--tinta);border-radius:var(--radio);box-shadow:6px 7px 0 var(--tinta);transform:rotate(-1deg)}
+.est-boceto .lista-quien{border-top:2px solid var(--tinta)}
+.est-boceto .lista-quien li{border-bottom:1.5px dashed var(--linea);grid-template-columns:190px 1fr}
+.est-boceto .lista-quien b{font-family:var(--titulo);font-size:23px;color:var(--terracota)}
+.est-boceto .lista-quien span{font-size:15.5px}
+
+/* Wabi Sabi · ¿Por qué Domingo? */
+.est-wabi{--crema:#d8cdb9;--papel:#e8dfcd;--tinta:#2a251f;--cafe:#57493a;--terracota:#a33a2a;--verde:#7b4a34;--ocre:#7b4a34;--linea:#b8aa90;
+  --titulo:'Instrument Serif',Georgia,serif;--texto:'Crimson Pro',Georgia,serif;
+  background:radial-gradient(40% 30% at 12% 20%,rgba(255,255,255,.28),transparent 70%),radial-gradient(35% 40% at 90% 80%,rgba(123,74,52,.16),transparent 70%),radial-gradient(50% 40% at 70% 10%,rgba(163,58,42,.07),transparent 70%),#d8cdb9!important}
+.est-wabi h2{font-size:clamp(46px,6vw,74px);letter-spacing:-.01em}
+.est-wabi h2::after{content:"D";display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;margin-left:18px;vertical-align:middle;
+  background:var(--terracota);color:#f3e7d6;font:400 26px/1 'Instrument Serif',serif;border-radius:6px 9px 5px 8px;transform:rotate(-6deg);opacity:.9}
+.est-wabi .filete{width:80px;height:4px;border-radius:4px;background:var(--verde);opacity:.7}
+.est-wabi .polaroid{background:#f1e9da;padding:14px 14px 6px;border-radius:3px 6px 4px 7px;box-shadow:0 22px 34px -22px rgba(42,37,31,.7)}
+.est-wabi .polaroid img{filter:sepia(.18) saturate(.9);border-radius:2px 5px 3px 4px}
+.est-wabi .polaroid figcaption{color:var(--verde)}
+.est-wabi .mano{color:var(--verde)}
+.est-wabi::before{content:"";position:absolute;left:-120px;bottom:-140px;width:520px;height:420px;border-radius:58% 42% 61% 39% / 47% 55% 45% 53%;background:rgba(123,74,52,.12);z-index:-1}
+
+/* Mid-Century · Quién lo hace */
+.est-mid{--crema:#f2e8d2;--papel:#fbf5e6;--tinta:#2b2118;--cafe:#5a4632;--terracota:#d0602a;--verde:#1e6b73;--verde-2:#155259;--ocre:#e9a93a;--linea:#d9c9a5;
+  --titulo:'Gloock',Georgia,serif;--texto:'IBM Plex Serif',Georgia,serif;--fui:'Work Sans',system-ui,sans-serif;font-size:18.5px}
+.est-mid h2{font-size:clamp(44px,5.6vw,68px)}
+.est-mid .filete{width:90px;height:8px;background:linear-gradient(90deg,var(--ocre) 0 33%,var(--terracota) 33% 66%,var(--verde) 66%)}
+.est-mid .creador figure{position:relative}
+.est-mid .creador figure::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:var(--ocre);left:-70px;top:-40px;z-index:-1}
+.est-mid .creador figure::after{content:"";position:absolute;width:190px;height:95px;border-radius:0 0 190px 190px;background:var(--verde);right:-50px;bottom:-30px;z-index:-1}
+.est-mid .creador figure img{border-radius:220px 220px 8px 8px;border:0;box-shadow:none}
+.est-mid .firma{font-family:'Gloock',serif;font-size:34px;color:var(--terracota)}
+.est-mid .firma::before{content:"✦ ";color:var(--ocre)}
+.est-mid::before{content:"";position:absolute;right:-60px;top:60px;width:240px;height:240px;background:repeating-conic-gradient(var(--terracota) 0 6deg,transparent 6deg 18deg);border-radius:50%;opacity:.18;z-index:-1}
+
+/* Bauhaus · Convocatoria */
+.est-bauhaus{--crema:#e4ded0;--papel:#fffdf6;--tinta:#111;--cafe:#2e2e2e;--terracota:#d8332a;--verde:#1f4fa3;--verde-2:#173c7d;--ocre:#f3c40f;--amarillo:#f3c40f;--linea:#111;
+  --titulo:'Outfit',system-ui,sans-serif;--texto:'Work Sans',system-ui,sans-serif;--fui:'Outfit',system-ui,sans-serif;--radio:0;--radio-tag:0;font-size:18px}
+.est-bauhaus h2{font-weight:800;letter-spacing:-.035em;text-transform:lowercase;font-size:clamp(46px,6.4vw,84px);line-height:.95}
+.est-bauhaus h2 em{font-style:normal;color:var(--verde)}
+.est-bauhaus .filete{width:64px;height:64px;border-radius:50%;background:var(--ocre);margin:26px 0}
+.est-bauhaus .conv{border:3px solid var(--tinta);border-radius:0;box-shadow:12px 12px 0 var(--tinta);background:var(--papel)}
+.est-bauhaus .conv h3{font-weight:800;text-transform:lowercase;letter-spacing:-.02em}
+.est-bauhaus .conv .lado{background:var(--verde);border-left:3px solid var(--tinta)}
+.est-bauhaus .conv .lado::before{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:var(--ocre)}
+.est-bauhaus .conv .lado::after{content:"";position:absolute;left:0;bottom:0;width:0;height:0;border-left:120px solid var(--terracota);border-top:120px solid transparent}
+.est-bauhaus .conv .num{font-family:'Outfit',sans-serif;font-weight:800;color:#fff;position:relative;z-index:1}
+.est-bauhaus .conv .lado h3,.est-bauhaus .conv .lado p{position:relative;z-index:1}
+.est-bauhaus .conv .lado .mano{color:var(--ocre)!important}
+.est-bauhaus .conv-pasos li{border-bottom:2px solid var(--tinta)}
+.est-bauhaus .conv-pasos li::before{font-family:'Outfit',sans-serif;font-weight:800;color:#fff;font-size:20px;width:36px;height:36px;top:10px;display:flex;align-items:center;justify-content:center;background:var(--terracota)}
+.est-bauhaus .conv-pasos li:nth-child(2)::before{background:var(--verde);border-radius:50%}
+.est-bauhaus .conv-pasos li:nth-child(3)::before{background:var(--ocre);color:#111}
+.est-bauhaus .conv-pasos li:nth-child(4)::before{background:#111}
+.est-bauhaus .boton{text-transform:lowercase;font-weight:600;border-width:2px}
+.est-bauhaus::before{content:"";position:absolute;left:-60px;top:120px;width:120px;height:120px;background:var(--terracota);z-index:-1}
+.est-bauhaus::after{content:"";position:absolute;right:8%;top:70px;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:120px solid var(--verde);opacity:.9;z-index:-1}
+
+/* Aurora · Domingo Lite */
+.est-aurora{--crema:#e3edef;--papel:#fcfefe;--tinta:#17262e;--cafe:#3f5560;--terracota:#5b3fbf;--verde:#0b7a73;--verde-2:#5a3fc4;--ocre:#5b3fbf;--linea:#b9cbd3;
+  --titulo:'Instrument Serif',Georgia,serif;--texto:'Lora',Georgia,serif;--fui:'Instrument Sans',system-ui,sans-serif;--radio:999px;
+  background:radial-gradient(45% 55% at 10% 10%,rgba(11,122,115,.28),transparent 70%),radial-gradient(50% 60% at 95% 30%,rgba(91,63,191,.26),transparent 70%),radial-gradient(60% 50% at 50% 110%,rgba(246,227,161,.45),transparent 70%),#e3edef!important}
+.est-aurora h2{font-style:italic;font-size:clamp(46px,6vw,78px)}
+.est-aurora .filete{width:140px;height:3px;border-radius:3px;background:linear-gradient(90deg,#0b7a73,#5a3fc4)}
+.est-aurora .lite{border:1px solid rgba(255,255,255,.8);border-radius:24px;background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 30px 60px -30px rgba(23,38,46,.35)}
+.est-aurora .lite>div+div{border-left:1px solid rgba(23,38,46,.12);background:rgba(255,255,255,.35)}
+.est-aurora .lite h3{font-style:italic}
+.est-aurora .boton.primario{background-image:linear-gradient(100deg,#0b7a73,#5a3fc4);border:0;padding:15px 30px}
+.est-aurora .incluye li::before{border-color:var(--verde)}
+@media (max-width:760px){.est-aurora .lite>div+div{border-left:0;border-top:1px solid rgba(23,38,46,.12)}}
+
+/* Bohemio · Precio */
+.est-bohemio{--crema:#eadbc9;--papel:#f6ecdf;--tinta:#3a2433;--cafe:#6b4a5c;--terracota:#a94a28;--verde:#a94a28;--verde-2:#8a3a1e;--ocre:#8e5a6f;--amarillo:#f0d8c4;--linea:#cfb1b4;
+  --titulo:'Young Serif',Georgia,serif;--texto:'Lora',Georgia,serif;--fui:'Lora',Georgia,serif;--radio:999px;--crema-boton:#fffaf2;
+  background:radial-gradient(circle at 1px 1px,rgba(142,90,111,.22) 1.2px,transparent 1.6px) 0 0/22px 22px,#eadbc9!important}
+.est-bohemio .cabeza{text-align:center;margin-left:auto;margin-right:auto}
+.est-bohemio .cabeza .filete{margin-left:auto;margin-right:auto;width:auto;height:auto;background:none;border:0}
+.est-bohemio .cabeza .filete::before{content:"❦  ✦  ❦";display:block;color:var(--ocre);font-size:20px;letter-spacing:.3em}
+.est-bohemio .precio{border:2px solid var(--tinta);border-radius:28px;box-shadow:0 0 0 8px var(--crema),0 0 0 9px var(--ocre),0 30px 60px -30px rgba(58,36,51,.5)}
+.est-bohemio .precio .der{background:var(--amarillo);border-left:2px solid var(--tinta)}
+.est-bohemio .cifra{font-family:'Young Serif',serif}
+.est-bohemio .codigo{border-radius:999px;border-color:var(--terracota);color:var(--terracota)}
+.est-bohemio .incluye li::before{border-color:var(--terracota)}
+@media (max-width:860px){.est-bohemio .precio .der{border-left:0;border-top:2px solid var(--tinta)}}
+
+@media (max-width:760px){
+  .est-bauhaus::before{width:46px;height:46px;left:-23px;top:60px}
+  .est-bauhaus::after{right:18px;top:auto;bottom:24px;border-left-width:34px;border-right-width:34px;border-bottom-width:58px}
+  .est-japandi::after{display:none}
+  .est-mid::before{width:150px;height:150px;top:20px}
+  .est-mid .creador figure::before{width:210px;height:210px;left:-30px}
+}
+/* Clásico · Descargas */
+.est-clasico{--crema:#fbf9f4;--papel:#ffffff;--tinta:#23201c;--cafe:#5f5850;--terracota:#1f4d46;--verde:#1f4d46;--verde-2:#163a35;--ocre:#1f4d46;--linea:#e1dbd0;
+  --titulo:'Newsreader',Georgia,serif;--texto:'Newsreader',Georgia,serif;--fui:'Instrument Sans',system-ui,sans-serif;--radio:8px;--radio-tag:6px}
+.est-clasico h2{font-weight:400}
+.est-clasico .descarga{border:1px solid var(--linea);border-radius:14px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04),0 18px 40px -24px rgba(35,32,28,.28)}
+.est-clasico .pasos li{border-top:1px solid var(--linea)}
+.est-clasico .pasos li::before{font-family:'Newsreader',serif;color:var(--verde)}
+.est-clasico .como-instalar a{font-family:'Newsreader',serif;color:var(--verde)}
+
+/* Imprenta · Portada, preguntas y contacto (el estilo de la marca) */
+.est-imprenta{--fui:'Crimson Pro',Georgia,serif}
+.contacto.est-imprenta{background:#1f1b16;--crema:#1f1b16;--tinta:#ece4cf;--cafe:#cbbf9f;--linea:#4a4232;--verde:#e3a32b;--verde-2:#c98d1c;--crema-boton:#1f1b16;--terracota:#e3a32b}
+.contacto.est-imprenta h2{color:#f0e6c8}
+
+/* Aviso de convocatoria, en Bauhaus */
+.aviso-conv{background:#f3c40f;color:#111;font-family:'Outfit',system-ui,sans-serif;font-size:16px;border-bottom:3px solid #111}
+.aviso-conv b{color:#fff;background:#111;padding:5px 9px 4px;letter-spacing:.14em;font-size:12px;font-weight:800}
+.aviso-conv a{color:#111;font-weight:800;text-transform:lowercase}
+.aviso-conv .figs{display:inline-flex;gap:6px;align-items:center}
+.aviso-conv .figs i{display:block;width:14px;height:14px}
+
 /* Descargas */
 .descargas{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .descarga{border:1.5px solid var(--tinta);border-radius:6px;padding:28px;background:var(--papel);display:flex;flex-direction:column;gap:12px}
@@ -292,7 +459,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 <body>
 
 <div class="aviso-conv" id="aviso-conv">
-  <div class="envoltura"><b>Convocatoria</b><span>Busco 5 escritores para usar Domingo dos semanas y platicar conmigo.</span><a href="#convocatoria">Ver cómo participar →</a></div>
+  <div class="envoltura"><span class="figs" aria-hidden="true"><i style="background:#d8332a"></i><i style="background:#1f4fa3;border-radius:50%"></i></span><b>Convocatoria</b><span>Busco 5 escritores para usar Domingo dos semanas y platicar conmigo.</span><a href="#convocatoria">Ver cómo participar →</a></div>
 </div>
 <header class="barra">
   <div class="envoltura">
@@ -312,7 +479,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 <main id="inicio">
 
 <!-- PORTADA -->
-<section class="portada">
+<section class="portada est-imprenta" data-estilo="imprenta" data-nombre="Imprenta">
   <div class="envoltura">
     <div class="rejilla">
       <div>
@@ -363,7 +530,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- FUNCIONES -->
-<section class="bloque" id="funciones">
+<section class="bloque est est-japandi" id="funciones" data-estilo="japandi" data-nombre="Japandi">
   <div class="envoltura">
     <div class="cabeza">
       <div class="versal">La app</div>
@@ -390,7 +557,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- ESTILOS -->
-<section class="bloque oscuro" id="estilos">
+<section class="bloque oscuro est est-acanthus" id="estilos" data-estilo="acanthus" data-nombre="Acanthus">
   <div class="envoltura">
     <div class="cabeza">
       <div class="versal">Diez estilos</div>
@@ -409,7 +576,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- PARA QUIÉN -->
-<section class="bloque" id="para-quien">
+<section class="bloque est est-boceto" id="para-quien" data-estilo="boceto" data-nombre="Boceto">
   <div class="envoltura dos">
     <div>
       <div class="versal">Para quién</div>
@@ -433,7 +600,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- DOMINGO EL PERRO -->
-<section class="bloque" id="domingo" style="background:var(--papel)">
+<section class="bloque est est-wabi" id="domingo" data-estilo="wabi-sabi" data-nombre="Wabi Sabi">
   <div class="envoltura">
     <div class="dos" style="margin-bottom:64px">
     <div>
@@ -456,7 +623,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- CREADOR -->
-<section class="bloque" id="creador">
+<section class="bloque est est-mid" id="creador" data-estilo="mid-century" data-nombre="Mid-Century">
   <div class="envoltura creador">
     <figure class="aparece">
       <img src="img/domingo-3.webp" width="720" height="960" loading="lazy" alt="Emilio Saldaña sentado en el pasto con Domingo.">
@@ -473,7 +640,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- CONVOCATORIA -->
-<section class="bloque" id="convocatoria">
+<section class="bloque est est-bauhaus" id="convocatoria" data-estilo="bauhaus" data-nombre="Bauhaus">
   <div class="envoltura">
     <div class="cabeza">
       <div class="versal">Convocatoria</div>
@@ -507,7 +674,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- PRUEBA -->
-<section class="bloque" id="probar">
+<section class="bloque est est-aurora" id="probar" data-estilo="aurora" data-nombre="Aurora">
   <div class="envoltura">
     <div class="cabeza">
       <div class="versal">Domingo Lite</div>
@@ -546,7 +713,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- PRECIO -->
-<section class="bloque" id="precio" style="background:var(--papel)">
+<section class="bloque est est-bohemio" id="precio" data-estilo="bohemio" data-nombre="Bohemio">
   <div class="envoltura">
     <div class="cabeza">
       <div class="versal">Precio</div>
@@ -585,7 +752,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- DESCARGAS -->
-<section class="bloque" id="descargas">
+<section class="bloque est est-clasico" id="descargas" data-estilo="clasico" data-nombre="Clásico">
   <div class="envoltura">
     <div class="cabeza">
       <div class="versal">Descargar</div>
@@ -621,7 +788,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- PREGUNTAS -->
-<section class="bloque" id="preguntas" style="background:var(--papel)">
+<section class="bloque est est-imprenta" id="preguntas" style="background:var(--papel)" data-estilo="imprenta" data-nombre="Imprenta">
   <div class="envoltura">
     <div class="cabeza">
       <div class="versal">Preguntas</div>
@@ -646,7 +813,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
 </section>
 
 <!-- CONTACTO -->
-<section class="bloque contacto" id="contacto">
+<section class="bloque contacto est est-imprenta" id="contacto" data-estilo="imprenta" data-nombre="Imprenta, oscuro">
   <div class="envoltura">
     <div class="versal">Contacto</div>
     <h2 style="margin-top:14px">¿Dudas, ideas o un error que encontraste? Escríbeme.</h2>
@@ -893,6 +1060,20 @@ const FUNCIONES = [
     $("#pie-estilo").textContent = clasico ? "Clásico, tono " + est.t + ". " + e[2] : e[1];
   }
   mostrarEstilo();
+
+  /* Cada sección dice con qué estilo de la app está vestida; al tocarla, se ve en el visor */
+  window.verEstilo = function (v) {
+    est.e = v; if (v !== "clasico") est.t = "claro"; mostrarEstilo();
+    document.getElementById("estilos").scrollIntoView({behavior: "smooth"});
+  };
+  document.querySelectorAll("section[data-estilo]").forEach(sec => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "tag-estilo";
+    b.textContent = "Estilo " + sec.dataset.nombre;
+    b.title = "Ver este estilo en la app";
+    b.addEventListener("click", () => verEstilo(sec.dataset.estilo));
+    sec.appendChild(b);
+  });
 
   $("#anio").textContent = new Date().getFullYear();
 
