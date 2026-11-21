@@ -2,6 +2,7 @@
 <html lang="es-MX">
 <head>
 <meta charset="utf-8">
+<script src="prueba.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Domingo · Escribe como si fuera domingo</title>
 <meta name="description" content="Domingo es un estudio de escritura para macOS y Windows. Novela, cuento, tesis, guion y diario en un solo archivo tuyo, sin conexión y sin suscripción.">
@@ -98,6 +99,15 @@ footer .marca img{width:44px}
 .portada .entrada{font-size:clamp(21px,2.2vw,25px);max-width:640px;color:var(--cafe);font-style:italic}
 .acciones{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;align-items:center}
 .sistemas{font-size:16px;color:var(--cafe);margin-top:14px}
+/* Prueba gratis: .solo-prueba se ve con la prueba activa; .sin-prueba, sin ella */
+.solo-prueba{display:none!important}
+.prueba-on .solo-prueba{display:revert!important}
+.prueba-on .sin-prueba{display:none!important}
+.acciones.solo-prueba{display:none!important}
+.prueba-on .acciones.solo-prueba{display:flex!important}
+.prueba-on .pasos.solo-prueba{display:grid!important}
+.lite-portada{margin-top:12px;font-size:17px;color:var(--cafe)}
+.lite-portada a{color:var(--verde)}
 
 .ventana{background:var(--papel);border:1.5px solid var(--tinta);border-radius:10px;overflow:hidden;
   box-shadow:0 30px 60px -28px rgba(42,33,26,.45), 8px 8px 0 var(--verde)}
@@ -272,7 +282,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
       <a href="#funciones">Funciones</a>
       <a href="#domingo">¿Por qué Domingo?</a>
       <a href="#creador">Quién lo hace</a>
-      <a href="#probar">Pruébalo</a>
+      <a href="#probar">Domingo Lite</a>
       <a href="#precio">Precio</a>
       <a href="#preguntas">Preguntas</a>
       <a class="boton primario" data-cta href="#precio">Comprar</a>
@@ -292,11 +302,16 @@ footer summary{cursor:pointer;color:#d8ccb4}
         <h1>Escribe como si<br>fuera <em>domingo</em>.</h1>
         <hr class="filete">
         <p class="entrada">Un estudio de escritura en español para quien quiere terminar lo que empezó. Tu novela, tu tesis, tu guion o tu diario, en un solo archivo que es tuyo.</p>
-        <div class="acciones">
+        <div class="acciones sin-prueba">
           <a class="boton primario" data-cta href="#precio">Comprar Domingo</a>
-          <a class="boton secundario" data-lite href="probar/">Pruébalo gratis</a>
+          <a class="boton secundario" data-lite href="probar/">Usar Domingo Lite</a>
         </div>
-        <div class="sistemas">Para macOS y Windows · Funciona sin conexión · Pago único</div>
+        <div class="acciones solo-prueba">
+          <a class="boton primario" href="#descargas">Descargar gratis · 14 días</a>
+          <a class="boton secundario" data-cta href="#precio">Comprar Domingo</a>
+        </div>
+        <p class="lite-portada solo-prueba">¿Sin instalar nada? <a href="probar/">Domingo Lite</a> es gratis en tu navegador.</p>
+        <div class="sistemas"><span class="sin-prueba">Para macOS y Windows · Funciona sin conexión · Pago único</span><span class="solo-prueba">Para macOS y Windows · 14 días gratis con todo · Después, pago único</span></div>
       </div>
 
       <div class="ventana aparece">
@@ -442,10 +457,10 @@ footer summary{cursor:pointer;color:#d8ccb4}
 <section class="bloque" id="probar">
   <div class="envoltura">
     <div class="cabeza">
-      <div class="versal">Pruébalo</div>
-      <h2>Escribe en Domingo antes de comprarlo</h2>
+      <div class="versal">Domingo Lite</div>
+      <h2>Domingo, gratis en tu navegador</h2>
       <hr class="filete">
-      <p>Domingo Lite abre en tu navegador, sin instalar nada y sin cuenta. Es la misma app, con lo esencial encendido.</p>
+      <p>Una versión gratuita de Domingo para usar cuando quieras, sin instalar nada y sin cuenta. Tiene lo esencial y no vence.</p>
     </div>
     <div class="lite">
       <div>
@@ -473,6 +488,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
       <a class="boton primario" data-lite href="probar/">Abrir Domingo Lite</a>
     </div>
     <p class="nota-lite">Mejor en computadora. Lo que escribes se queda en tu navegador; guárdalo como .mingo para no perderlo.</p>
+    <p class="nota-lite solo-prueba">¿Quieres todas las herramientas? <a href="#descargas">Descarga la app completa</a> y úsala 14 días gratis.</p>
   </div>
 </section>
 
@@ -491,6 +507,7 @@ footer summary{cursor:pointer;color:#d8ccb4}
         <div id="precio-cifra"><span class="tachado" id="precio-antes" hidden>$499</span><span class="cifra">$<span id="precio-num">499</span> <small>MXN</small></span></div>
         <p style="color:var(--cafe);margin-top:10px" id="precio-texto">Pago único, licencia de por vida.</p>
         <ul class="incluye">
+          <li class="solo-prueba">Antes de pagar, 14 días gratis con todo</li>
           <li>Licencia para 2 equipos</li>
           <li>macOS y Windows</li>
           <li>Todas las herramientas, sin versiones recortadas</li>
@@ -536,10 +553,15 @@ footer summary{cursor:pointer;color:#d8ccb4}
       </div>
     </div>
     <p class="versiones">¿Buscas una versión anterior? Están todas en la <a href="https://github.com/emiliosalmen/domingo-descargas/releases" target="_blank" rel="noopener">página de versiones</a>.</p>
-    <ol class="pasos">
+    <ol class="pasos sin-prueba">
       <li>Compra tu licencia y revisa tu correo: ahí llega la clave.</li>
       <li>Descarga e instala Domingo en tu Mac o tu PC.</li>
       <li>Abre la app, pega tu clave y empieza a escribir.</li>
+    </ol>
+    <ol class="pasos solo-prueba">
+      <li>Descarga e instala Domingo en tu Mac o tu PC.</li>
+      <li>Escribe 14 días con todas las herramientas, sin cuenta ni tarjeta.</li>
+      <li>Si te quedas, compra tu licencia y pega la clave en la app.</li>
     </ol>
     <p class="como-instalar"><a href="instalar/">¿Cómo instalo Domingo?</a> Los pasos con imágenes, incluidos los avisos de seguridad de la primera vez.</p>
   </div>
@@ -557,7 +579,9 @@ footer summary{cursor:pointer;color:#d8ccb4}
       <details><summary>¿Necesito internet para usar Domingo?</summary><p>No. Domingo funciona sin conexión. Solo necesitas internet para descargarla y activar tu licencia.</p></details>
       <details><summary>¿Dónde se guardan mis textos?</summary><p>En tu computadora, en archivos .mingo que tú eliges dónde guardar. No hay nube ni cuenta. Domingo hace copias de seguridad automáticas al guardar y puedes recuperarlas por fecha.</p></details>
       <details><summary>¿En cuántos equipos puedo usarla?</summary><p>Tu licencia sirve para dos equipos, por ejemplo tu computadora de escritorio y tu laptop, aunque uno sea Mac y otro Windows. Para cambiar de computadora, en la anterior ve a Configuración › Licencia › Liberar este dispositivo.</p></details>
-      <details><summary>¿Puedo probar Domingo antes de comprarlo?</summary><p>Sí. <a href="probar/">Domingo Lite</a> abre en tu navegador, sin instalar nada. Tiene el editor, el corcho, el mapa de relaciones, Misi y los mangos, con un tope de 5,000 palabras. Lo que escribas lo guardas como archivo .mingo y lo abres después en la app completa.</p></details>
+      <details class="solo-prueba"><summary>¿Puedo probar Domingo antes de comprarlo?</summary><p>Sí. Descarga la app y úsala 14 días con todas las herramientas, sin cuenta ni tarjeta. La prueba empieza sola la primera vez que abres Domingo.</p></details>
+      <details class="solo-prueba"><summary>¿Qué pasa cuando terminan los 14 días?</summary><p>Tus manuscritos siguen ahí: puedes abrirlos, leerlos y exportarlos cuando quieras. Para volver a escribir, compra tu licencia y pega la clave en la app. Todo lo que escribiste durante la prueba se queda contigo.</p></details>
+      <details><summary>¿Qué es Domingo Lite?</summary><p>Una versión gratuita de Domingo que se usa en el navegador, sin instalar nada. Tiene el editor, el corcho, el mapa de relaciones, Misi y los mangos, con un tope de 5,000 palabras. Lo que escribas lo guardas como archivo .mingo y lo abres después en la app completa. <a href="probar/">Abrir Domingo Lite</a>.</p></details>
       <details><summary>¿Es una suscripción?</summary><p>No. Pagas una vez y la licencia es tuya, sin fecha de caducidad.</p></details>
       <details><summary>¿Cómo funciona la preventa?</summary><p id="faq-preventa">Del domingo 15 al domingo 22 de noviembre, las primeras 10 personas que usen el código MANGO al pagar obtienen Domingo por $399 MXN. Después el precio es $499 MXN.</p></details>
       <details><summary>¿Y si no me gusta?</summary><p>Tienes 14 días para pedir tu reembolso, sin preguntas. Escribe a contacto@domingo-app.com.mx.</p></details>
@@ -745,7 +769,7 @@ const FUNCIONES = [
     document.querySelectorAll("[data-lite]").forEach(a => {
       if (!a.dataset.texto) a.dataset.texto = a.textContent;
       if (liteAbierta){ a.href = "probar/"; a.removeAttribute("aria-disabled"); a.textContent = a.dataset.texto; }
-      else { a.href = "#probar"; a.setAttribute("aria-disabled","true"); a.textContent = a.closest(".portada") ? "Pruébalo desde el 15" : "Disponible el domingo 15 de noviembre"; }
+      else { a.href = "#probar"; a.setAttribute("aria-disabled","true"); a.textContent = a.closest(".portada") ? "Domingo Lite, desde el 15" : "Disponible el domingo 15 de noviembre"; }
     });
     /* Descargas */
     const abiertas = Date.now() >= T(CONFIG.descargas) || location.hash === "#prueba-venta" || location.hash === "#prueba-ultimo-dia";
@@ -755,7 +779,9 @@ const FUNCIONES = [
       else { a.href = "#descargas"; a.setAttribute("aria-disabled","true"); }
     });
     $("#descarga-intro").textContent = abiertas
-      ? "Elige tu sistema. La descarga es libre; tu clave de licencia la desbloquea."
+      ? (window.DOMINGO_PRUEBA && DOMINGO_PRUEBA.activa
+          ? "Descárgala gratis y úsala 14 días con todas las herramientas, sin cuenta ni tarjeta. Al terminar, tus manuscritos siguen ahí para leer y exportar; para seguir escribiendo, compra tu licencia."
+          : "Elige tu sistema. La descarga es libre; tu clave de licencia la desbloquea.")
       : "Las descargas se abren el domingo 22 de noviembre. Si compras en preventa, tu clave llega por correo y la usas ese día.";
     return f;
   }

@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<script src="../prueba.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Instala Domingo</title>
 <meta name="description" content="Cómo descargar, instalar y activar Domingo en Mac y Windows.">
@@ -15,6 +16,11 @@ body{margin:0}
 a{color:#B4441F}a:hover{color:#8F3418}
 </style>
 <style>html{scroll-behavior:smooth} img{max-width:100%}
+.solo-prueba{display:none!important}
+.prueba-on .solo-prueba{display:revert!important}
+.prueba-on .sin-prueba{display:none!important}
+.prueba-on li.solo-prueba{display:list-item!important}
+.prueba-on .solo-flex{display:flex!important}
 [style*="flex: 1 1"]{min-width:0}
 @media (max-width:620px){
   h1{font-size:64px!important}
@@ -50,7 +56,7 @@ a{color:#B4441F}a:hover{color:#8F3418}
 </a>
 <a href="#activa" style="flex: 1 1 260px; text-decoration: none; color: #2A211A; background: #FBF8EE; border: 2px solid #2A211A; padding: 22px 24px; display: flex; gap: 18px; align-items: center">
 <span style="font-family: 'IM Fell English', Georgia, serif; font-size: 56px; line-height: 1; color: #B4441F">3</span>
-<span style="display: flex; flex-direction: column"><strong style="font-size: 24px; font-weight: 600">Activa</strong><span style="font-size: 17px; color: #5D493A">con tu clave de licencia</span></span>
+<span class="sin-prueba" style="display: flex; flex-direction: column"><strong style="font-size: 24px; font-weight: 600">Activa</strong><span style="font-size: 17px; color: #5D493A">con tu clave de licencia</span></span><span class="solo-prueba solo-flex" style="flex-direction: column"><strong style="font-size: 24px; font-weight: 600">Escribe</strong><span style="font-size: 17px; color: #5D493A">14 días gratis, y activa si te quedas</span></span>
 </a>
 </nav>
 
@@ -77,7 +83,7 @@ Descargar para Windows</a>
 </div>
 <div style="display: flex; gap: 16px; align-items: flex-start; background: #E3A32B; padding: 20px 24px">
 <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#2A211A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><circle cx="8" cy="15" r="4"></circle><path d="M11 12l9-9"></path><path d="M17 6l3 3"></path><path d="M15 8l2 2"></path></svg>
-<p style="margin: 0">Tu <strong>clave de licencia</strong> llegó en el correo de compra. Tenla a la mano; la pegarás en el paso 3.</p>
+<p class="sin-prueba" style="margin: 0">Tu <strong>clave de licencia</strong> llegó en el correo de compra. Tenla a la mano; la pegarás en el paso 3.</p><p class="solo-prueba" style="margin: 0">No necesitas clave para empezar: tienes <strong>14 días gratis</strong> con todas las herramientas. Si ya compraste, ten a la mano la clave de tu correo de compra.</p>
 </div>
 </section>
 
@@ -163,13 +169,16 @@ Descargar para Windows</a>
 <section id="activa" style="display: flex; flex-direction: column; gap: 28px">
 <div style="display: flex; align-items: baseline; gap: 18px; border-bottom: 2px solid #2A211A; padding-bottom: 12px">
 <span style="font-family: 'IM Fell English', Georgia, serif; font-size: 64px; line-height: 1; color: #B4441F">3</span>
-<h2 style="margin: 0; font-family: 'IM Fell English', Georgia, serif; font-weight: 400; font-size: 48px; line-height: 1.1">Activa</h2>
+<h2 style="margin: 0; font-family: 'IM Fell English', Georgia, serif; font-weight: 400; font-size: 48px; line-height: 1.1"><span class="sin-prueba">Activa</span><span class="solo-prueba">Escribe y activa</span></h2>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
 <ol style="flex: 1 1 380px; margin: 0; padding-left: 28px; display: flex; flex-direction: column; gap: 16px">
-<li>Abre Domingo. La primera vez aparece la pantalla de activación.</li>
-<li>Copia la clave de licencia de tu correo de compra y pégala en el campo.</li>
-<li>Pulsa <strong>Activar</strong>. Necesitas internet solo en este momento.</li>
+<li class="sin-prueba">Abre Domingo. La primera vez aparece la pantalla de activación.</li>
+<li class="sin-prueba">Copia la clave de licencia de tu correo de compra y pégala en el campo.</li>
+<li class="sin-prueba">Pulsa <strong>Activar</strong>. Necesitas internet solo en este momento.</li>
+<li class="solo-prueba">Abre Domingo y empieza a escribir. Tu prueba de 14 días arranca sola, sin cuenta ni tarjeta.</li>
+<li class="solo-prueba">Cuando compres, pulsa el botón <strong>Prueba</strong> de la barra superior y pega la clave de tu correo de compra.</li>
+<li class="solo-prueba">Pulsa <strong>Activar</strong>. Necesitas internet solo en este momento. Si la prueba termina antes, tus manuscritos siguen ahí para leer y exportar.</li>
 </ol>
 <div style="flex: 1 1 420px; background: #FBF8EE; border: 2px solid #2A211A; padding: 30px; display: flex; flex-direction: column; gap: 14px">
 <div style="font-family: 'IM Fell English', Georgia, serif; font-style: italic; font-size: 34px">Domingo</div>
