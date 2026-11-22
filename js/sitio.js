@@ -3,7 +3,7 @@
    ============================================================ */
 const CONFIG = {
   // Enlaces de compra de Polar. El pago se abre sobre el sitio, con tema claro.
-  // Preventa (ya incluye el código MANGO) hasta el 22 de noviembre a las 23:59; venta desde el 23.
+  // Preventa (ya incluye el código MANGO), extendida hasta el 30 de noviembre a las 23:59; venta desde el 1 de diciembre.
   checkoutPreventa: "https://buy.polar.sh/polar_cl_9hj7qkpe0u4ZlLj2QggbKz6zzjJ4KeN9v4ZDq0RdbRq",
   checkoutVenta:    "https://buy.polar.sh/polar_cl_whcDHK2vUrVFwJDrdAdMXPNLgvHJ8XazWONUk0xSvaQ",
   // Enlaces directos a los instaladores. Si están vacíos, los botones quedan desactivados.
@@ -12,7 +12,7 @@ const CONFIG = {
   // Fechas en hora de Monterrey (UTC-6)
   preventa:    "2026-11-15T00:00:00-06:00",
   lanzamiento: "2026-11-22T00:00:00-06:00",
-  finPreventa: "2026-11-23T00:00:00-06:00",
+  finPreventa: "2026-12-01T00:00:00-06:00",   // fin de la preventa extendida
   descargas:   "2026-11-18T00:00:00-06:00",
   codigo: "MANGO",
   precio: 499,
@@ -59,7 +59,10 @@ const CONFIG = {
       texto = "Comprar en preventa";
     } else {
       etq = "Ya disponible"; tit = "Domingo ya está aquí";
-      nota = pv ? "Hoy es el último día de preventa: $" + CONFIG.precioPreventa + " MXN para las primeras 10 personas, hasta las 23:59."
+      const ultimo = location.hash === "#prueba-ultimo-dia" || (T(CONFIG.finPreventa) - Date.now() <= 864e5);
+      nota = pv ? (ultimo
+                  ? "Hoy es el último día de preventa: $" + CONFIG.precioPreventa + " MXN hasta las 23:59."
+                  : "Preventa extendida hasta el 30 de noviembre: $" + CONFIG.precioPreventa + " MXN con el código <b>" + CONFIG.codigo + "</b>, ya incluido al pagar.")
                 : "$" + CONFIG.precio + " MXN, pago único. Licencia para 2 equipos.";
       texto = pv ? "Comprar en preventa" : "Comprar Domingo";
     }
@@ -72,15 +75,15 @@ const CONFIG = {
     pon("#precio-antes", e => e.hidden = !pv);
     pon("#precio-num", e => e.textContent = pv ? CONFIG.precioPreventa : CONFIG.precio);
     pon("#precio-texto", e => e.textContent = pv
-      ? "Precio de preventa con el código " + CONFIG.codigo + ", ya incluido, solo para las primeras 10 personas."
+      ? "Precio de preventa con el código " + CONFIG.codigo + ", ya incluido, para las primeras 10 personas hasta el 30 de noviembre."
       : "Pago único, licencia de por vida.");
     const terminada = f !== "antes" && !pv;
-    pon("#preventa-titulo", e => e.textContent = terminada ? "Terminó el 22 de noviembre" : "Del 15 al 22 de noviembre");
+    pon("#preventa-titulo", e => e.textContent = terminada ? "Terminó el 30 de noviembre" : "Extendida hasta el 30 de noviembre");
     pon("#preventa-texto", e => e.innerHTML = terminada
       ? "Gracias a quienes compraron en preventa. Ahora Domingo cuesta <b>$" + CONFIG.precio + " MXN</b>, pago único."
-      : "Las primeras 10 personas que compren durante la preventa pagan <b>$" + CONFIG.precioPreventa + " MXN</b>. El código ya va incluido en el botón de compra.");
+      : "Alargamos la preventa una semana más. Hasta el domingo 30 de noviembre a las 23:59, las primeras 10 personas pagan <b>$" + CONFIG.precioPreventa + " MXN</b> en lugar de $" + CONFIG.precio + ". El código ya va incluido en el botón de compra.");
     pon("#preventa-codigo", e => e.hidden = terminada);
-    pon("#faq-preventa", e => e.textContent = "Del domingo 15 al domingo 22 de noviembre a las 23:59, las primeras 10 personas que compraron obtuvieron Domingo por $" + CONFIG.precioPreventa + " MXN con el código " + CONFIG.codigo + ". Después el precio es $" + CONFIG.precio + " MXN.");
+    pon("#faq-preventa", e => e.textContent = "La preventa empezó el domingo 15 de noviembre y se extendió hasta el domingo 30 de noviembre a las 23:59. Mientras dure, las primeras 10 personas pagan $" + CONFIG.precioPreventa + " MXN con el código " + CONFIG.codigo + ", que ya va incluido en el botón de compra. Desde el 1 de diciembre el precio es $" + CONFIG.precio + " MXN.");
 
     /* Botones de compra: Polar abre el pago sobre la página. Si su script no carga, son enlaces normales. */
     $$("[data-cta]").forEach(a => {

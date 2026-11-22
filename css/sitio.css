@@ -162,6 +162,7 @@ figcaption b{color:var(--tinta);font-weight:600}
 .indice a:hover{transform:translateY(-3px);box-shadow:var(--sombra);color:inherit}
 .indice .img{aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--linea);background:var(--hueso)}
 .indice .img img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.indice .img.pix img{width:auto;height:auto;object-fit:contain;flex:none}
 .indice .img.pix{display:flex;align-items:flex-end;justify-content:center;gap:12px;padding-bottom:18%;background:linear-gradient(#efe4c6,#e2d3ab)}
 .indice .txt{padding:var(--s3)}
 .indice .txt span{font:italic 400 15px/1 var(--titulo);color:var(--terra)}
@@ -194,6 +195,27 @@ figcaption b{color:var(--tinta);font-weight:600}
 .mosaico.inv{grid-template-columns:4fr 8fr}
 .mosaico.inv .principal{order:2}
 .mosaico.tres{grid-template-columns:repeat(3,1fr)}
+
+/* Talleres */
+.talleres{padding:var(--s7) 0;background:var(--verde);color:var(--crema)}
+.talleres h2,.talleres h3{color:var(--crema)}
+.talleres .versal{color:var(--amarillo)}
+.talleres .filete{border-color:var(--crema)}
+.talleres .cab p{color:#d6ddd1}
+.sesiones{list-style:none;margin:var(--s4) 0 0;padding:0;counter-reset:s}
+.sesiones li{counter-increment:s;display:grid;grid-template-columns:56px 1fr;gap:var(--s2);padding:var(--s2) 0;border-top:1px solid rgba(248,243,228,.2)}
+.sesiones li::before{content:counter(s,upper-roman);font:italic 400 28px/1 var(--titulo);color:var(--amarillo);padding-top:2px}
+.sesiones b{display:block;font:400 22px/1.2 var(--titulo);color:var(--crema)}
+.sesiones span{font-size:16px;color:#cfd8cc}
+.talleres figcaption{color:#cfd8cc}.talleres figcaption b{color:var(--crema)}
+.tres-t{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);margin-top:var(--s6)}
+.tres-t div{border:1px solid rgba(248,243,228,.22);border-radius:var(--r);padding:var(--s3)}
+.tres-t .n{font:400 44px/1 var(--titulo);color:var(--amarillo)}
+.tres-t h3{margin:var(--s1) 0}
+.tres-t p{font-size:16px;color:#cfd8cc;margin:0}
+.taller-dos{display:grid;grid-template-columns:5fr 7fr;gap:var(--s6);align-items:start}
+.taller-dos .figs{display:grid;gap:var(--s4)}
+@media (max-width:960px){.taller-dos{grid-template-columns:1fr}.tres-t{grid-template-columns:1fr}}
 
 /* ========== ESTILOS ========== */
 .visor{display:grid;grid-template-columns:8fr 4fr;gap:var(--s5);align-items:start}
