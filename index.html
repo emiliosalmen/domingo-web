@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script src="prueba.js"></script>
+<script src="novedades.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Domingo · Escribe como si fuera domingo</title>
 <meta name="description" content="Domingo es un estudio de escritura para macOS y Windows. Novela, cuento, tesis, guion y diario en un solo archivo tuyo, sin conexión y sin suscripción.">
@@ -28,11 +29,12 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Domingo","applicationCategory":"Writing application","operatingSystem":"macOS, Windows","inLanguage":"es","author":{"@type":"Person","name":"Emilio Saldaña"},"offers":{"@type":"Offer","price":"499","priceCurrency":"MXN"},"url":"https://domingo-app.com.mx/","image":"https://domingo-app.com.mx/img/icono-512.png"}</script>
 </head>
 <body>
-<div class="aviso-conv"><div class="envoltura"><b>Convocatoria</b><span>Busco 5 escritores para usar Domingo dos semanas y platicar conmigo.</span><a href="historia/#convocatoria">Ver cómo participar</a></div></div>
+<div class="aviso-conv aviso-nov solo-novedades"><div class="envoltura"><b>Nuevo</b><span>Talleres de escritura, Cuaderno, convertir de otra app y más.</span><a href="novedades/">Ver la actualización</a></div></div>
+<div class="aviso-conv sin-novedades"><div class="envoltura"><b>Convocatoria</b><span>Busco 5 escritores para usar Domingo dos semanas y platicar conmigo.</span><a href="historia/#convocatoria">Ver cómo participar</a></div></div>
 <header class="barra">
   <div class="envoltura">
     <a class="marca" href="./" aria-label="Domingo, inicio"><img src="img/logo.png" alt="" width="46" height="29">Domingo</a>
-    <nav class="pestanas" aria-label="Secciones"><a href="" aria-current="page">Inicio</a><a href="funciones/">Funciones</a><a href="estilos/">Estilos</a><a href="companeros/">Compañeros</a><a href="historia/">Historia</a><a href="precio/">Precio</a><a href="preguntas/">Preguntas</a></nav>
+    <nav class="pestanas" aria-label="Secciones"><a href="" aria-current="page">Inicio</a><a href="lite/">Domingo Lite<span class=gratis>gratis</span></a><a href="funciones/">Funciones</a><a href="estilos/">Estilos</a><a href="companeros/">Compañeros</a><a href="historia/">Historia</a><a href="precio/">Precio</a><a href="preguntas/">Preguntas</a></nav>
     <a class="boton primario solo-prueba" href="precio/#descargas">Descargar gratis</a>
     <a class="boton primario sin-prueba" data-cta data-fijo href="precio/">Comprar</a>
   </div>
@@ -86,6 +88,15 @@
       <div><span class="n">iii.</span><h3>En español</h3><p>Corrección, estilo y plantillas pensadas para nuestro idioma, con sus tildes y su puntuación.</p></div>
       <div><span class="n">iv.</span><h3>Sin prisa</h3><p>Metas amables que se apagan si quieres. Escribes a tu ritmo, no al de la app.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="banda solo-novedades" style="padding-top:0">
+  <div class="envoltura duo">
+    <figure class="aparece"><div class="recorte"><img src="img/novedades/taller-leccion.webp" width="760" height="639" alt="Lección del Taller de poema: un gato maestro con birrete explica qué es un poema." loading="lazy"></div></figure>
+    <div><span class="versal">Nuevo en Domingo</span><h2 style="margin-top:var(--s2)">La actualización de noviembre</h2><hr class="filete">
+      <p>Talleres de escritura con su propio botón, un Cuaderno al estilo bullet journal, diez páginas para el diario, convertir manuscritos de Word, PDF o Scrivener, publicar en tu blog y un Estudio más completo para tu tesis.</p>
+      <div class="acciones"><a class="boton primario" href="novedades/">Ver todo lo nuevo</a></div></div>
   </div>
 </section>
 
@@ -148,7 +159,8 @@
       <p>Un estudio de escritura en español para macOS y Windows. Hecho en Monterrey por Emilio Saldaña · © <span id="anio">2026</span></p>
     </div>
     <nav aria-label="Pie">
-      <a href="">Inicio</a><a href="funciones/">Funciones</a><a href="estilos/">Estilos</a><a href="companeros/">Compañeros</a><a href="historia/">Historia</a><a href="precio/">Precio</a><a href="preguntas/">Preguntas</a>
+      <a href="">Inicio</a><a href="lite/">Domingo Lite</a><a href="funciones/">Funciones</a><a href="estilos/">Estilos</a><a href="companeros/">Compañeros</a><a href="historia/">Historia</a><a href="precio/">Precio</a><a href="preguntas/">Preguntas</a>
+      <a class="solo-novedades" href="novedades/">Novedades</a>
       <a href="instalar/">Cómo instalar</a>
       <a href="probar/">Domingo Lite</a>
       <a href="https://www.instagram.com/domingo.app/" target="_blank" rel="noopener">Instagram</a>
@@ -165,7 +177,7 @@
 <script src="js/sitio.js"></script>
 <script>
 /* Enlaces antiguos de una sola página: la app y Domingo Lite abren #descargas y #precio */
-(function(){var m={"#descargas":"precio/#descargas","#descargar":"precio/#descargas","#precio":"precio/","#probar":"precio/#probar","#funciones":"funciones/","#estilos":"estilos/","#para-quien":"funciones/","#domingo":"historia/","#creador":"historia/#emilio","#convocatoria":"historia/#convocatoria","#preguntas":"preguntas/","#contacto":"preguntas/#contacto"};var d=m[location.hash];if(d)location.replace(d);})();
+(function(){var m={"#descargas":"precio/#descargas","#descargar":"precio/#descargas","#precio":"precio/","#probar":"lite/","#lite":"lite/","#novedades":"novedades/","#funciones":"funciones/","#estilos":"estilos/","#para-quien":"funciones/","#domingo":"historia/","#creador":"historia/#emilio","#convocatoria":"historia/#convocatoria","#preguntas":"preguntas/","#contacto":"preguntas/#contacto"};var d=m[location.hash];if(d)location.replace(d);})();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.1/dist/embed.global.js" defer data-auto-init></script>
 </body>

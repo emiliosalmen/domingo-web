@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script src="../prueba.js"></script>
+<script src="../novedades.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Precio y descargas · Domingo</title>
 <meta name="description" content="Domingo cuesta $499 MXN, pago único, con 14 días de prueba gratis. Descarga para macOS y Windows o usa Domingo Lite en tu navegador.">
@@ -28,11 +29,12 @@
 
 </head>
 <body>
-<div class="aviso-conv"><div class="envoltura"><b>Convocatoria</b><span>Busco 5 escritores para usar Domingo dos semanas y platicar conmigo.</span><a href="../historia/#convocatoria">Ver cómo participar</a></div></div>
+<div class="aviso-conv aviso-nov solo-novedades"><div class="envoltura"><b>Nuevo</b><span>Talleres de escritura, Cuaderno, convertir de otra app y más.</span><a href="../novedades/">Ver la actualización</a></div></div>
+<div class="aviso-conv sin-novedades"><div class="envoltura"><b>Convocatoria</b><span>Busco 5 escritores para usar Domingo dos semanas y platicar conmigo.</span><a href="../historia/#convocatoria">Ver cómo participar</a></div></div>
 <header class="barra">
   <div class="envoltura">
     <a class="marca" href="../" aria-label="Domingo, inicio"><img src="../img/logo.png" alt="" width="46" height="29">Domingo</a>
-    <nav class="pestanas" aria-label="Secciones"><a href="../">Inicio</a><a href="../funciones/">Funciones</a><a href="../estilos/">Estilos</a><a href="../companeros/">Compañeros</a><a href="../historia/">Historia</a><a href="../precio/" aria-current="page">Precio</a><a href="../preguntas/">Preguntas</a></nav>
+    <nav class="pestanas" aria-label="Secciones"><a href="../">Inicio</a><a href="../lite/">Domingo Lite<span class=gratis>gratis</span></a><a href="../funciones/">Funciones</a><a href="../estilos/">Estilos</a><a href="../companeros/">Compañeros</a><a href="../historia/">Historia</a><a href="../precio/" aria-current="page">Precio</a><a href="../preguntas/">Preguntas</a></nav>
     <a class="boton primario solo-prueba" href="../precio/#descargas">Descargar gratis</a>
     <a class="boton primario sin-prueba" data-cta data-fijo href="../precio/">Comprar</a>
   </div>
@@ -81,14 +83,11 @@
     <li>Abre la app, pega tu clave y empieza a escribir.</li></ol>
   <p class="chico" style="margin-top:var(--s5)"><a href="../instalar/">¿Cómo instalo Domingo?</a> Los pasos con imágenes, incluidos los avisos de seguridad de la primera vez. ¿Buscas una versión anterior? Están en la <a href="https://github.com/emiliosalmen/domingo-descargas/releases" target="_blank" rel="noopener">página de versiones</a>.</p>
 </div></section>
-<section class="banda verde" id="probar"><div class="envoltura lite">
-  <div><span class="versal">Domingo Lite</span><h2 style="margin-top:var(--s2)">Domingo, gratis en tu navegador</h2><hr class="filete">
-    <p>Una versión gratuita para usar cuando quieras, sin instalar nada y sin cuenta. Tiene lo esencial y no vence.</p>
-    <div class="col2"><div><h4>Incluye</h4><ul><li>Editor, corcho y etiquetas</li><li>Mapa de relaciones</li><li>Misi y los mangos</li><li>Tres estilos y sus tres tonos</li><li>Archivo .mingo, que abre la app completa</li></ul></div>
-      <div><h4>Límites</h4><ul><li>Hasta 5,000 palabras</li><li>Un manuscrito a la vez</li><li>Mapas de hasta 6 elementos</li><li>Sin exportar a Word, PDF o ePub</li></ul></div></div>
-    <div class="acciones"><a class="boton claro" data-lite href="../probar/">Abrir Domingo Lite</a></div>
-    <p class="chico" style="color:#cfd8cc;margin-top:var(--s2)">Mejor en computadora. Lo que escribes se queda en tu navegador; guárdalo como .mingo para no perderlo.</p></div>
-  <figure class="aparece"><div class="ventana "><div class="franja"><i></i><i></i><i></i></div><img src="../img/estilos/editor-wabi-sabi-sepia.webp" width="1440" height="900" alt="Domingo en estilo Wabi Sabi, uno de los tres estilos de Domingo Lite." loading="lazy"></div><figcaption><b>Wabi Sabi</b>, uno de los tres estilos de Lite.</figcaption></figure>
+<section class="banda verde"><div class="envoltura duo">
+  <div><span class="versal">¿Sin instalar nada?</span><h2 style="margin-top:var(--s2)">Domingo Lite es gratis, siempre</h2><hr class="filete">
+    <p>Una versión de Domingo que se usa en el navegador, sin cuenta y sin fecha de vencimiento. Lo que escribes se guarda como .mingo y abre en la app completa cuando la compres.</p>
+    <div class="acciones"><a class="boton claro" data-lite href="../probar/">Abrir Domingo Lite</a><a class="boton secundario" style="color:var(--crema);border-color:var(--crema)" href="../lite/">Qué incluye</a></div></div>
+  <figure class="aparece"><div class="ventana "><div class="franja"><i></i><i></i><i></i></div><img src="../img/app/lite-editor.webp" width="1440" height="900" alt="Domingo Lite con un manuscrito abierto en estilo Wabi Sabi sepia." loading="lazy"></div><figcaption><b>Domingo Lite</b>, en Wabi Sabi sepia.</figcaption></figure>
 </div></section>
 </main>
 <footer>
@@ -98,7 +97,8 @@
       <p>Un estudio de escritura en español para macOS y Windows. Hecho en Monterrey por Emilio Saldaña · © <span id="anio">2026</span></p>
     </div>
     <nav aria-label="Pie">
-      <a href="../">Inicio</a><a href="../funciones/">Funciones</a><a href="../estilos/">Estilos</a><a href="../companeros/">Compañeros</a><a href="../historia/">Historia</a><a href="../precio/">Precio</a><a href="../preguntas/">Preguntas</a>
+      <a href="../">Inicio</a><a href="../lite/">Domingo Lite</a><a href="../funciones/">Funciones</a><a href="../estilos/">Estilos</a><a href="../companeros/">Compañeros</a><a href="../historia/">Historia</a><a href="../precio/">Precio</a><a href="../preguntas/">Preguntas</a>
+      <a class="solo-novedades" href="../novedades/">Novedades</a>
       <a href="../instalar/">Cómo instalar</a>
       <a href="../probar/">Domingo Lite</a>
       <a href="https://www.instagram.com/domingo.app/" target="_blank" rel="noopener">Instagram</a>

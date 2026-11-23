@@ -105,7 +105,7 @@ const CONFIG = {
     $$("[data-lite]").forEach(a => {
       if (!a.dataset.texto) a.dataset.texto = a.textContent;
       if (liteAbierta) { a.href = R + "probar/"; a.removeAttribute("aria-disabled"); a.textContent = a.dataset.texto; }
-      else { a.href = R + "precio/#probar"; a.setAttribute("aria-disabled", "true"); a.textContent = "Disponible el 15 de noviembre"; }
+      else { a.href = R + "lite/"; a.setAttribute("aria-disabled", "true"); a.textContent = "Disponible el 15 de noviembre"; }
     });
 
     /* Descargas */
