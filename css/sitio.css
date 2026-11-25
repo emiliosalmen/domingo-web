@@ -483,3 +483,11 @@ footer details p{max-width:60em}
 @keyframes pop-in{from{opacity:0;transform:translateY(30px) scale(.94) rotateX(8deg)}to{opacity:1;transform:none}}
 @keyframes pop-fondo{from{opacity:0}}
 @media (max-width:700px){.pop-nov[open]{grid-template-columns:1fr}.pop-nov .pop-img{padding:20px 20px 0;background:var(--papel)}.pop-nov .pop-txt{padding:20px 22px 24px}.pop-nov h2{font-size:32px}}
+
+/* Domingo 3.1 (se enciende con DOMINGO_NOVEDADES.v31) */
+.solo-31{display:none!important}
+.v31-on .solo-31{display:revert!important}
+.v31-on section.solo-31,.v31-on div.solo-31{display:block!important}
+.v31-on .sin-31{display:none!important}
+.separa-version{padding:var(--s6) 0 0;text-align:center}
+.separa-version .versal{display:inline-block;padding:10px 18px;border:1px solid var(--terra);border-radius:999px}
