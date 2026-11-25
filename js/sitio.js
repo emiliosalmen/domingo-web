@@ -161,3 +161,20 @@ const CONFIG = {
     $$(".aparece").forEach(el => io.observe(el));
   } else $$(".aparece").forEach(el => el.classList.add("visto"));
 })();
+
+/* Ventana emergente de la versión nueva: una sola vez por visitante, nunca en /novedades/ */
+(function () {
+  const d = document.getElementById('pop-nov');
+  if (!d || !(window.DOMINGO_NOVEDADES && DOMINGO_NOVEDADES.activa) || typeof d.showModal !== 'function') return;
+  if (/\/novedades\/?(index\.html)?$/.test(location.pathname)) return;
+  const clave = 'domingo-pop-3.0.0';
+  let visto = false;
+  try { visto = localStorage.getItem(clave) === '1'; } catch (e) {}
+  if (visto && location.hash !== '#prueba-novedades') return;
+  const cerrar = () => { try { localStorage.setItem(clave, '1'); } catch (e) {} d.close(); };
+  d.querySelectorAll('[data-cerrar]').forEach(b => b.addEventListener('click', cerrar));
+  d.querySelector('a').addEventListener('click', () => { try { localStorage.setItem(clave, '1'); } catch (e) {} });
+  d.addEventListener('cancel', () => { try { localStorage.setItem(clave, '1'); } catch (e) {} });
+  d.addEventListener('click', e => { if (e.target === d) cerrar(); });
+  setTimeout(() => { if (document.querySelector('dialog[open]')) return; d.showModal(); try { localStorage.setItem(clave, '1'); } catch (e) {} }, 1600);
+})();
