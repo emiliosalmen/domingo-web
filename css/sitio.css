@@ -172,7 +172,7 @@ figcaption b{color:var(--tinta);font-weight:600}
 .cita{display:grid;grid-template-columns:4fr 8fr;gap:var(--s6);align-items:center}
 .cita blockquote{margin:0;font:italic 400 clamp(28px,3.4vw,40px)/1.25 var(--titulo)}
 .cita .firma{font-family:var(--mano);font-size:30px;color:var(--amarillo);margin-top:var(--s3)}
-.marco-foto{background:var(--crema);padding:12px 12px 48px;transform:rotate(-2deg);box-shadow:0 24px 40px -20px rgba(0,0,0,.5);position:relative}
+.marco-foto{background:var(--crema);padding:12px 12px 48px;rotate:-2deg;box-shadow:0 24px 40px -20px rgba(0,0,0,.5);position:relative}
 .marco-foto figcaption{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-family:var(--mano);font-size:24px;color:var(--cafe);margin:0}
 
 /* ========== FUNCIONES ========== */
@@ -288,9 +288,9 @@ figcaption b{color:var(--tinta);font-weight:600}
 /* ========== HISTORIA ========== */
 .polaroids{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5);padding:var(--s3) var(--s4) 0}
 .polaroid{background:#fff;padding:12px 12px 52px;box-shadow:0 20px 40px -20px rgba(42,33,26,.5);position:relative}
-.polaroid:nth-child(1){transform:rotate(-2.5deg)}
-.polaroid:nth-child(2){transform:rotate(1.5deg) translateY(24px)}
-.polaroid:nth-child(3){transform:rotate(-1deg)}
+.polaroid:nth-child(1){rotate:-2.5deg}
+.polaroid:nth-child(2){rotate:1.5deg;margin-top:24px}
+.polaroid:nth-child(3){rotate:-1deg}
 .polaroid img{aspect-ratio:3/4;object-fit:cover;width:100%}
 .polaroid figcaption{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-family:var(--mano);font-size:24px;color:var(--cafe);margin:0}
 .creador{display:grid;grid-template-columns:5fr 7fr;gap:var(--s6);align-items:center}

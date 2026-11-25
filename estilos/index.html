@@ -26,6 +26,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/sitio.css">
+<link rel="stylesheet" href="../css/movimiento.css">
 
 </head>
 <body>
@@ -84,9 +85,9 @@
   <div class="cabeza"><span class="versal">Tres tonos</span><h2>De día, de tarde y de noche</h2><hr class="filete">
   <p>Cada estilo tiene su versión clara, sepia y oscura. El tono se cambia en un clic desde Configuración y la app puede seguir el de tu sistema.</p></div>
   <div class="tonos">
-    <figure class="aparece"><div class="ventana "><div class="franja"><i></i><i></i><i></i></div><img src="../img/estilos/corcho-imprenta-claro.webp" width="1440" height="900" alt="Corcho en estilo Imprenta, tono claro." loading="lazy"></div><figcaption><b>Claro.</b> Imprenta</figcaption></figure>
-    <figure class="aparece"><div class="ventana "><div class="franja"><i></i><i></i><i></i></div><img src="../img/estilos/corcho-imprenta-sepia.webp" width="1440" height="900" alt="Corcho en estilo Imprenta, tono sepia." loading="lazy"></div><figcaption><b>Sepia.</b> Imprenta</figcaption></figure>
-    <figure class="aparece"><div class="ventana "><div class="franja"><i></i><i></i><i></i></div><img src="../img/estilos/corcho-imprenta-oscuro.webp" width="1440" height="900" alt="Corcho en estilo Imprenta, tono oscuro." loading="lazy"></div><figcaption><b>Oscuro.</b> Imprenta</figcaption></figure>
+    <figure class="aparece"><div class="ventana " data-inclina="3"><div class="franja"><i></i><i></i><i></i></div><img src="../img/estilos/corcho-imprenta-claro.webp" width="1440" height="900" alt="Corcho en estilo Imprenta, tono claro." loading="lazy"></div><figcaption><b>Claro.</b> Imprenta</figcaption></figure>
+    <figure class="aparece"><div class="ventana " data-inclina="3"><div class="franja"><i></i><i></i><i></i></div><img src="../img/estilos/corcho-imprenta-sepia.webp" width="1440" height="900" alt="Corcho en estilo Imprenta, tono sepia." loading="lazy"></div><figcaption><b>Sepia.</b> Imprenta</figcaption></figure>
+    <figure class="aparece"><div class="ventana " data-inclina="3"><div class="franja"><i></i><i></i><i></i></div><img src="../img/estilos/corcho-imprenta-oscuro.webp" width="1440" height="900" alt="Corcho en estilo Imprenta, tono oscuro." loading="lazy"></div><figcaption><b>Oscuro.</b> Imprenta</figcaption></figure>
   </div>
 </div></section>
 <section class="banda"><div class="envoltura centro cabeza" style="margin-bottom:0">
@@ -118,17 +119,18 @@
 </footer>
 <div class="aviso" id="aviso" role="status"></div>
 <script src="../js/sitio.js"></script>
+<script src="../js/movimiento.js"></script>
 <script>(function(){const E=[["clasico", "Clásico", "El aspecto de siempre", "Desde el inicio"], ["wabi-sabi", "Wabi Sabi", "Papel y arcilla, lo imperfecto", "Desde el inicio"], ["japandi", "Japandi", "Madera clara y salvia, mucho aire", "Se desbloquea con 3 días escribiendo"], ["mid-century", "Mid-Century", "Mostaza, teal y líneas firmes", "Se desbloquea con 2,000 palabras"], ["boceto", "Boceto", "Hoja cuadriculada, grafito y lápiz rojo", "Se desbloquea con 7 días escribiendo"], ["bohemio", "Bohemio", "Ciruela, terracota y franjas estampadas", "Se desbloquea con 5 entradas de diario"], ["imprenta", "Imprenta", "Papel crema, filetes dobles y latón", "Se desbloquea con 10,000 palabras"], ["acanthus", "Acanthus", "Verde profundo, vino y oro botánico", "Se desbloquea con 21 días escribiendo"], ["aurora", "Aurora", "Degradados de aurora boreal y cristal", "Se desbloquea con 25,000 palabras"], ["bauhaus", "Bauhaus", "Primarios, negro y geometría", "Se desbloquea con 45 días escribiendo"]];
 const R=document.documentElement.dataset.raiz||"";const s={e:"clasico",p:"editor",t:"claro"};
 const img=document.querySelector("#marco img");const $=x=>document.querySelector(x);
 function ver(){const i=E.findIndex(x=>x[0]===s.e),e=E[i];
- $("#e-num").textContent="Estilo "+String(i+1).padStart(2,"0")+" de 10";$("#e-nombre").textContent=e[1];$("#e-desc").textContent=e[2];$("#e-req").textContent=e[3];
+ $("#e-num").textContent="Estilo "+String(i+1).padStart(2,"0")+" de 10";const nm=$("#e-nombre");if(nm.dataset.v!==e[1]){nm.dataset.v=e[1];if(document.documentElement.classList.contains("mov")){nm.innerHTML=[...e[1]].map((c,j)=>'<span class="l" style="--i:'+j+'">'+(c===" "?"&nbsp;":c)+'</span>').join("");nm.classList.add("letras");nm.classList.remove("k-on");void nm.offsetWidth;nm.classList.add("k-on")}else nm.textContent=e[1];}$("#e-desc").textContent=e[2];$("#e-req").textContent=e[3];
  document.querySelectorAll("#muestras button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.e===s.e));
  document.querySelectorAll("#sel-p button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===s.p));
  document.querySelectorAll("#sel-t button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===s.t));
  const src=R+"img/estilos/"+s.p+"-"+s.e+"-"+s.t+".webp";const pn={editor:"Editor",corcho:"Corcho",relaciones:"Mapa de relaciones"}[s.p];
  img.alt=pn+" de Domingo en estilo "+e[1]+", tono "+s.t+".";
- if(!img.src.endsWith(src.replace(/^(\.\.\/)+/,""))){img.style.opacity=.35;const n=new Image();n.onload=()=>{img.src=src;img.style.opacity=1};n.src=src;}
+ if(!img.src.endsWith(src.replace(/^(\.\.\/)+/,""))){img.classList.add("cambia");const n=new Image();n.onload=()=>{setTimeout(()=>{img.src=src;requestAnimationFrame(()=>img.classList.remove("cambia"))},120)};n.src=src;}
  const pre=["claro","sepia","oscuro"].map(t=>R+"img/estilos/"+s.p+"-"+s.e+"-"+t+".webp");pre.forEach(u=>{const n=new Image();n.src=u});}
 document.querySelectorAll("#muestras button").forEach(b=>b.addEventListener("click",()=>{s.e=b.dataset.e;ver();if(innerWidth<960)document.querySelector(".ficha-estilo").scrollIntoView({behavior:"smooth",block:"start"})}));
 document.querySelectorAll("#sel-p button").forEach(b=>b.addEventListener("click",()=>{s.p=b.dataset.v;ver()}));

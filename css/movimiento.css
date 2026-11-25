@@ -1,0 +1,94 @@
+/* Domingo · capa de movimiento
+   Todo vive bajo html.mov, que js/movimiento.js agrega solo si la persona no pidió reducir movimiento. */
+
+/* Barra de avance de lectura */
+.progreso{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--terra);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+
+/* ---------- Tipografía cinética ---------- */
+.mov .k{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.mov .ki{display:inline-block;transform:translate3d(0,108%,0) rotate(4deg);transform-origin:0 100%;transition:transform 1s cubic-bezier(.16,.84,.24,1) calc(var(--i,0) * 55ms)}
+.mov .k-on .ki{transform:none}
+.mov .letras .l{display:inline-block;opacity:0;transform:translate3d(0,.5em,0) rotateX(-70deg);transition:opacity .5s ease calc(var(--i,0) * 28ms),transform .7s cubic-bezier(.2,.8,.2,1) calc(var(--i,0) * 28ms)}
+.mov .letras.k-on .l{opacity:1;transform:none}
+/* subrayado a mano bajo "domingo" */
+.trazo{position:absolute;left:-4%;right:-4%;bottom:-.08em;height:.32em;overflow:visible;pointer-events:none}
+.trazo path{fill:none;stroke:var(--ocre);stroke-width:5;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:420;transition:stroke-dashoffset 1.1s cubic-bezier(.6,0,.2,1) .9s}
+.k-on .trazo path,.sin-mov .trazo path{stroke-dashoffset:0}
+.portada h1 em{position:relative;display:inline-block}
+
+/* Cinta de palabras (Inicio) */
+.cinta{overflow:hidden;padding:var(--s5) 0;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);background:var(--crema)}
+.cinta .fila{display:flex;gap:48px;white-space:nowrap;will-change:transform;font:italic 400 clamp(40px,6vw,84px)/1.1 var(--titulo);color:var(--tinta)}
+.cinta .fila+.fila{margin-top:8px;color:transparent;-webkit-text-stroke:1px var(--cafe);font-style:normal}
+.cinta .fila span{display:inline-flex;align-items:center;gap:48px}
+.cinta .fila span::after{content:"✦";font-size:.32em;color:var(--terra);-webkit-text-stroke:0}
+
+/* ---------- Revelado por desplazamiento ---------- */
+.mov .aparece{opacity:0;transform:translate3d(0,28px,0);transition:opacity .8s ease var(--d,0ms),transform 1s cubic-bezier(.16,.84,.24,1) var(--d,0ms)}
+.mov .aparece.visto{opacity:1;transform:none}
+.mov .aparece .ventana,.mov .aparece .recorte,.mov .aparece.ventana{clip-path:inset(0 0 100% 0 round 10px);transition:clip-path 1.1s cubic-bezier(.7,0,.2,1) calc(var(--d,0ms) + 80ms)}
+.mov .aparece.visto .ventana,.mov .aparece.visto .recorte,.mov .aparece.visto.ventana{clip-path:inset(0 0 0 0 round 10px)}
+.mov .aparece .ventana img,.mov .aparece .recorte img{transform:scale(1.08);transition:transform 1.6s cubic-bezier(.16,.84,.24,1) calc(var(--d,0ms) + 80ms)}
+.mov .aparece.visto .ventana img,.mov .aparece.visto .recorte img{transform:none}
+.mov .filete{transform:scaleX(0);transform-origin:0 50%;transition:transform .9s cubic-bezier(.7,0,.2,1) .25s}
+.mov .centro .filete{transform-origin:50% 50%}
+.mov .filete.visto{transform:none}
+
+/* ---------- Paralaje y 3D ---------- */
+.mov .escena{perspective:1600px}
+.mov .escena .plano{transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.mov .escena .atras{transform:translate3d(0,var(--p1,0px),-60px) rotate(2.2deg)}
+.mov .escena .frente-c{transform:translate3d(0,var(--p2,0px),40px)}
+.mov .escena .nota{transform:translate3d(0,var(--p3,0px),90px) rotate(-2.5deg)}
+.mov [data-par]{will-change:transform}
+
+/* Inclinación 3D con brillo en tarjetas */
+.mov [data-inclina]{transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .3s;transform:perspective(900px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg)) translateZ(0)}
+.mov [data-inclina].sobre{transition:transform .12s linear,box-shadow .3s}
+.mov [data-inclina]::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.38),transparent 45%);mix-blend-mode:soft-light}
+.mov [data-inclina].sobre::after{opacity:1}
+.mov .indice a,.mov .apodo,.mov .acc,.mov .descarga,.mov .tres-t div,.mov .muestras .mini{position:relative}
+
+/* ---------- Microinteracciones ---------- */
+.boton{position:relative;overflow:hidden;isolation:isolate}
+.mov .boton:active{transform:scale(.97)}
+.onda{position:absolute;border-radius:50%;background:currentColor;opacity:.25;transform:scale(0);animation:onda .6s ease-out forwards;pointer-events:none;z-index:-1}
+@keyframes onda{to{transform:scale(1);opacity:0}}
+.mov .boton.primario::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s ease;z-index:-1}
+.mov .boton.primario:hover::before{transform:translateX(120%)}
+.mov .iman{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+
+/* Misi respira y salta */
+.mov .escena .misi{animation:respira 3.2s ease-in-out infinite;transform-origin:50% 100%;cursor:pointer;pointer-events:auto}
+.mov .escena .misi.salta{animation:salta .7s cubic-bezier(.3,1.6,.5,1)}
+@keyframes respira{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.04)}}
+@keyframes salta{0%{transform:translateY(0) scale(1,1)}20%{transform:translateY(0) scale(1.1,.85)}50%{transform:translateY(-38px) scale(.92,1.1)}80%{transform:translateY(0) scale(1.08,.9)}100%{transform:none}}
+.mov .apodo:hover .sp img,.mov .pelaje:hover img,.mov .acc:hover img,.mov .hito:hover .sp img,.mov .indice a:hover .img.pix img{animation:brinco .6s cubic-bezier(.3,1.6,.5,1)}
+.mov .indice a:hover .img.pix img:nth-child(2){animation-delay:.08s}.mov .indice a:hover .img.pix img:nth-child(3){animation-delay:.16s}
+@keyframes brinco{0%,100%{transform:none}40%{transform:translateY(-14px)}70%{transform:translateY(2px)}}
+
+/* Polaroids y foto: se enderezan al pasar */
+.mov .polaroid,.mov .marco-foto{transition:opacity .8s ease var(--d,0ms),transform .6s cubic-bezier(.2,.8,.2,1),rotate .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.mov .polaroid.visto:hover,.mov .marco-foto.visto:hover{rotate:0deg;transform:translateY(-8px) scale(1.02);box-shadow:0 34px 50px -24px rgba(42,33,26,.55)}
+
+/* Camino de hitos: la línea se dibuja */
+.mov .hitos::before{transform:scaleX(0);transform-origin:0 50%;transition:transform 1.6s cubic-bezier(.7,0,.2,1) .2s}
+.mov .hitos.visto::before{transform:scaleX(1)}
+.mov .hito .bola{transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.5,1) var(--d,0ms)}
+.mov .hito.visto .bola{transform:none}
+
+/* Visor de estilos */
+.mov #marco img{transition:opacity .35s ease,transform .6s cubic-bezier(.2,.8,.2,1),filter .35s}
+.mov #marco img.cambia{opacity:.2;transform:scale(.985);filter:blur(3px)}
+.mov .ficha-estilo .nombre{perspective:600px}
+
+/* Menú: renglones entran uno tras otro */
+.mov .menu li{opacity:0;transform:translate3d(-16px,0,0);transition:opacity .5s ease var(--d,0ms),transform .6s cubic-bezier(.2,.8,.2,1) var(--d,0ms)}
+.mov .menu.visto li{opacity:1;transform:none}
+
+/* Números que cuentan */
+[data-cuenta]{font-variant-numeric:tabular-nums}
+
+@media (hover:none),(pointer:coarse){.mov [data-inclina]{transform:none!important}.mov [data-inclina]::after{display:none}}
+@media (prefers-reduced-motion:reduce){.cinta .fila{transform:none!important}.progreso{display:none}}
