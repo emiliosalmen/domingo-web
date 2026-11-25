@@ -491,3 +491,74 @@ footer details p{max-width:60em}
 .v31-on .sin-31{display:none!important}
 .separa-version{padding:var(--s6) 0 0;text-align:center}
 .separa-version .versal{display:inline-block;padding:10px 18px;border:1px solid var(--terra);border-radius:999px}
+
+/* ========== INSTRUCTIVO ========== */
+.guia-lay{display:grid;grid-template-columns:272px minmax(0,1fr);gap:var(--s6);align-items:start;padding-top:var(--s5);padding-bottom:var(--s7)}
+.guia-nav{position:sticky;top:136px;max-height:calc(100vh - 160px);overflow:auto;padding-right:8px;scrollbar-width:thin}
+.guia-nav summary{display:none}
+.guia-busca{width:100%;font:400 17px var(--texto);padding:10px 14px;border:1px solid var(--linea-2);border-radius:var(--r);background:var(--papel);color:var(--tinta);margin-bottom:var(--s2)}
+.guia-busca:focus{outline:2px solid var(--verde);outline-offset:1px}
+.guia-nav .gh{font:600 12px/1 var(--texto);letter-spacing:.24em;text-transform:uppercase;color:var(--terra);margin:var(--s3) 0 var(--s1)}
+.guia-nav a{display:block;padding:6px 10px;border-radius:6px;color:var(--cafe);text-decoration:none;font-size:16px;line-height:1.3}
+.guia-nav a:hover{background:var(--hueso);color:var(--tinta)}
+.guia-nav a[aria-current="page"]{background:var(--verde);color:var(--crema)}
+.guia-nav .vacio{font-size:15px;color:var(--cafe);padding:6px 10px}
+.miga{font-size:15px;color:var(--cafe);margin-bottom:var(--s2)}
+.miga a{color:var(--cafe)}
+.gc{max-width:760px;min-width:0}
+.gc h2{font-size:clamp(36px,4.6vw,52px);margin:0 0 var(--s2)}
+.gc h3{font-size:26px;margin:var(--s5) 0 var(--s1)}
+.gc h4{font:600 13px/1 var(--texto);letter-spacing:.2em;text-transform:uppercase;color:var(--cafe);margin:var(--s3) 0 var(--s1)}
+.gc .lead{font-size:22px;font-style:italic;color:var(--cafe);line-height:1.5;margin-bottom:var(--s3)}
+.gc p,.gc li,.gc dd{font-size:19px}
+.gc ul,.gc ol{padding-left:22px;margin:0 0 var(--s2)}
+.gc li{margin:6px 0}
+.gc figure{margin:var(--s4) 0;background:var(--papel);border:1px solid rgba(42,33,26,.25);border-radius:10px;padding:10px;box-shadow:var(--sombra)}
+.gc figure img{border-radius:6px;margin:0 auto;max-height:640px;width:auto}
+.gc figcaption{padding:6px 4px 0}
+.gc .ej{background:var(--amarillo);border-radius:var(--r);padding:var(--s2) var(--s3);margin:var(--s3) 0;font-size:18px;position:relative}
+.gc .ej b:first-child{font-family:var(--titulo);font-weight:400;font-size:21px}
+.gc table{border-collapse:collapse;width:100%;margin:var(--s2) 0 var(--s3);font-size:17px;background:var(--papel);display:block;overflow-x:auto}
+.gc th,.gc td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--linea)}
+.gc th{font:600 13px/1.3 var(--texto);letter-spacing:.12em;text-transform:uppercase;color:var(--cafe);background:var(--hueso)}
+.gc dl.gl2 dt{font-weight:600;margin-top:var(--s2)}
+.gc dl.gl2 dd{margin:2px 0 0;color:var(--cafe)}
+.gc code,.gc kbd{font:500 .85em/1 ui-monospace,Menlo,monospace;background:var(--hueso);border:1px solid var(--linea);border-radius:4px;padding:2px 6px}
+.gc pre{white-space:pre-wrap;background:var(--papel);border:1px solid var(--linea);border-radius:var(--r);padding:var(--s2);font-size:15px;overflow-x:auto}
+.gc details{border:1px solid var(--linea);border-radius:var(--r);margin:var(--s2) 0;padding:0 var(--s2);background:var(--papel)}
+.gc details>summary{cursor:pointer;font-weight:600;padding:12px 0}
+.gc .row{display:flex;flex-wrap:wrap;gap:8px;margin:var(--s2) 0}
+.gc .explorar{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);border:1px solid var(--linea);border-radius:var(--r);padding:12px var(--s2);margin:8px 0;background:var(--papel)}
+.gc .explorar p{margin:0;font-size:17px}
+.gc ul.que{list-style:none;padding:0}
+.gc ul.que li{display:flex;justify-content:space-between;gap:var(--s2);align-items:center;border-bottom:1px solid var(--linea);padding:8px 0;margin:0}
+.gref{display:inline-block;padding:1px 10px;border-radius:999px;background:var(--hueso);border:1px solid var(--linea-2);color:var(--verde);text-decoration:none;font-size:.92em;white-space:nowrap}
+.gref:hover{background:var(--verde);color:var(--crema);border-color:var(--verde)}
+.en-app{display:inline-block;padding:1px 10px;border-radius:999px;border:1px dashed var(--linea-2);color:var(--cafe);font-size:.92em;white-space:nowrap}
+.en-app::after{content:" · en la app";font-size:.8em;color:var(--terra)}
+.guia-pag{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid var(--tinta)}
+.guia-pag a{display:block;padding:var(--s2);border:1px solid var(--linea);border-radius:var(--r);text-decoration:none;color:var(--tinta);background:var(--papel)}
+.guia-pag a:hover{border-color:var(--verde)}
+.guia-pag small{display:block;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
+.guia-pag .sig{text-align:right;grid-column:2}
+.guia-grupos{columns:3 300px;column-gap:var(--s5)}
+.guia-grupo{break-inside:avoid;margin-bottom:var(--s5)}
+.guia-grupo h2{font-size:32px;margin-bottom:var(--s2);padding-bottom:var(--s1);border-bottom:1px solid var(--tinta)}
+.guia-grupo a{display:block;padding:10px 0;border-bottom:1px solid var(--linea);text-decoration:none;color:var(--tinta)}
+.guia-grupo a b{display:block;font:400 21px/1.2 var(--titulo)}
+.guia-grupo a span{font-size:16px;color:var(--cafe)}
+.guia-grupo a:hover b{color:var(--terra)}
+.resultados a{display:block;padding:var(--s2) 0;border-bottom:1px solid var(--linea);text-decoration:none;color:var(--tinta)}
+.resultados a b{font:400 22px/1.2 var(--titulo)}
+.resultados a span{display:block;font-size:16px;color:var(--cafe)}
+.resultados mark{background:var(--amarillo);color:inherit}
+@media (max-width:960px){
+  .guia-lay{grid-template-columns:1fr;gap:var(--s3);padding-top:var(--s3)}
+  .guia-nav{position:static;max-height:none;overflow:visible;padding:0}
+  .guia-nav details{border:1px solid var(--linea-2);border-radius:var(--r);background:var(--papel);padding:0 var(--s2)}
+  .guia-nav summary{display:block;cursor:pointer;padding:12px 0;font-weight:600}
+  .guia-nav .gindice{padding-bottom:var(--s2)}
+  .gc p,.gc li,.gc dd{font-size:18px}
+  .guia-pag{grid-template-columns:1fr}.guia-pag .sig{grid-column:auto}
+}
+@media (min-width:961px){.guia-nav details>.gindice{display:block}}
