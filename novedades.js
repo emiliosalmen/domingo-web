@@ -3,7 +3,7 @@
    v31: enciende lo de Domingo 3.1 (sección en /novedades/, títulos 3.1 y herramientas nuevas en Funciones).
    Cambia v31 a true cuando el release v3.1.0 esté publicado y marcado como Latest en domingo-descargas.
    Para revisar antes: #prueba-novedades (todo lo de 3.0) o #prueba-31 (también lo de 3.1). */
-window.DOMINGO_NOVEDADES = { activa: true, v31: false };
+window.DOMINGO_NOVEDADES = { activa: true, v31: true };
 (function () {
   var N = window.DOMINGO_NOVEDADES, h = '';
   try { h = location.hash; } catch (e) {}
