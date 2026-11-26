@@ -171,3 +171,16 @@ const CONFIG = {
   d.addEventListener('click', e => { if (e.target === d) d.close(); });
   setTimeout(() => { if (!document.querySelector('dialog[open]')) d.showModal(); }, 1600);
 })();
+
+/* Barra: altura real para lo pegajoso y menú en teléfono */
+(function () {
+  const barra = document.querySelector('.barra'); if (!barra) return;
+  const fija = () => document.documentElement.style.setProperty('--alto-barra', barra.getBoundingClientRect().height + 'px');
+  fija(); addEventListener('resize', fija);
+  const b = barra.querySelector('.menu-btn'); if (!b) return;
+  const cerrar = () => { barra.classList.remove('abierta'); b.setAttribute('aria-expanded', 'false'); fija(); };
+  b.addEventListener('click', () => { const a = !barra.classList.contains('abierta'); barra.classList.toggle('abierta', a); b.setAttribute('aria-expanded', String(a)); });
+  barra.querySelectorAll('.pestanas a').forEach(a => a.addEventListener('click', cerrar));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
+  document.addEventListener('click', e => { if (!barra.contains(e.target)) cerrar(); });
+})();
