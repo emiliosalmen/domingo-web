@@ -43,10 +43,10 @@
 .mov [data-par]{will-change:transform}
 
 /* Inclinación 3D con brillo en tarjetas */
-.mov [data-inclina]{transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .3s;transform:perspective(900px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg)) translateZ(0)}
+.mov [data-inclina]{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .3s;transform:perspective(900px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg))}
 .mov [data-inclina].sobre{transition:transform .12s linear,box-shadow .3s}
-.mov [data-inclina]::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
-  background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.38),transparent 45%);mix-blend-mode:soft-light}
+.mov [data-inclina]::after{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.16),transparent 45%)}
 .mov [data-inclina].sobre::after{opacity:1}
 .mov .indice a,.mov .apodo,.mov .acc,.mov .descarga,.mov .tres-t div,.mov .muestras .mini{position:relative}
 
