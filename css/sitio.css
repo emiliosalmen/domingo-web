@@ -482,7 +482,21 @@ footer details p{max-width:60em}
 .mov .pop-nov[open]::backdrop{animation:pop-fondo .4s ease}
 @keyframes pop-in{from{opacity:0;transform:translateY(30px) scale(.94) rotateX(8deg)}to{opacity:1;transform:none}}
 @keyframes pop-fondo{from{opacity:0}}
-@media (max-width:700px){.pop-nov[open]{grid-template-columns:1fr}.pop-nov .pop-img{padding:20px 20px 0;background:var(--papel)}.pop-nov .pop-txt{padding:20px 22px 24px}.pop-nov h2{font-size:32px}}
+@media (max-width:700px){
+  .pop-nov{width:calc(100% - 24px);max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;border-radius:12px}
+  .pop-nov[open]{grid-template-columns:1fr;grid-template-rows:auto auto}
+  .pop-nov .pop-img{padding:0;background:var(--verde);height:150px;overflow:hidden;align-items:flex-start}
+  .pop-nov .pop-img img{border-radius:0;box-shadow:none;width:100%;height:100%;object-fit:cover;object-position:top center}
+  .pop-nov .pop-txt{padding:16px 18px 18px}
+  .pop-nov .versal{font-size:11px}
+  .pop-nov h2{font-size:27px;margin:6px 0 8px}
+  .pop-nov p{font-size:16px;line-height:1.45;margin-bottom:8px}
+  .pop-nov p.chico{font-size:14px}
+  .pop-nov .acciones{margin-top:12px;gap:8px}
+  .pop-nov .acciones .boton{flex:1 1 auto;min-height:44px;padding:0 14px;font-size:16px}
+  .pop-x{background:rgba(253,250,241,.9);top:8px;right:8px}
+}
+@media (max-width:700px) and (max-height:620px){.pop-nov .pop-img{display:none}}
 
 /* Domingo 3.1 (se enciende con DOMINGO_NOVEDADES.v31) */
 .solo-31{display:none!important}
