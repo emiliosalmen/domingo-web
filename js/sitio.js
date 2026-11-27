@@ -162,14 +162,21 @@ const CONFIG = {
   } else $$(".aparece").forEach(el => el.classList.add("visto"));
 })();
 
-/* Ventana emergente de la versión nueva: solo en el inicio, cada vez que se abre o se recarga */
+/* Ventana emergente de la versión nueva: solo en el inicio y una vez por visita (se vuelve a mostrar si cierras la pestaña y regresas otro día) */
 (function () {
   const d = document.getElementById('pop-nov');
   if (!d || !(window.DOMINGO_NOVEDADES && DOMINGO_NOVEDADES.activa) || typeof d.showModal !== 'function') return;
   if ((document.documentElement.dataset.raiz || '') !== '') return;
   d.querySelectorAll('[data-cerrar]').forEach(b => b.addEventListener('click', () => d.close()));
   d.addEventListener('click', e => { if (e.target === d) d.close(); });
-  setTimeout(() => { if (!document.querySelector('dialog[open]')) d.showModal(); }, 1600);
+  let visto = false;
+  try { visto = sessionStorage.getItem('pop-nov-visto') === '1'; } catch (e) {}
+  if (visto && !/prueba-(novedades|31)/.test(location.hash)) return;
+  setTimeout(() => {
+    if (document.querySelector('dialog[open]')) return;
+    d.showModal();
+    try { sessionStorage.setItem('pop-nov-visto', '1'); } catch (e) {}
+  }, 1600);
 })();
 
 /* Barra: altura real para lo pegajoso y menú en teléfono */
@@ -183,4 +190,45 @@ const CONFIG = {
   barra.querySelectorAll('.pestanas a').forEach(a => a.addEventListener('click', cerrar));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
   document.addEventListener('click', e => { if (!barra.contains(e.target)) cerrar(); });
+})();
+
+/* Domingo de escritura: la consigna de la semana, según la fecha de Monterrey.
+   Para agregar retos, suma frases al final de RETOS; cambian cada domingo a las 00:00. Al terminar la lista vuelve a empezar. */
+const RETOS = {
+  inicio: '2026-11-29',
+  lista: [
+    'Escribe la primera línea de la historia que nunca terminaste.',
+    'Describe tu lugar para escribir en una sola frase.',
+    'Escribe el peor primer renglón posible.',
+    'Una frase que empiece igual que termina, pero que diga otra cosa.',
+    'Escribe la escena que tu libro favorito se saltó.',
+    'Un nombre que escuchaste esta semana. ¿Quién es?',
+    'Lo último que alguien te dijo, como primera línea de un cuento.',
+    'Describe un olor de tu infancia sin decir qué es.',
+    'Escribe lo que tu personaje nunca le dijo a nadie.',
+    'Una carta de cinco palabras a quien eras hace diez años.'
+  ]
+};
+function hoyMty() {
+  const p = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Monterrey', year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short' }).formatToParts(new Date());
+  const g = t => (p.find(x => x.type === t) || {}).value;
+  return { fecha: g('year') + '-' + g('month') + '-' + g('day'), dia: g('weekday') };
+}
+(function () {
+  const c = document.getElementById('reto-consigna'); if (!c) return;
+  const DIA = 864e5, base = Date.parse(RETOS.inicio + 'T00:00:00Z');
+  let hoy = Date.parse(hoyMty().fecha + 'T00:00:00Z');
+  const m = location.hash.match(/prueba-reto-(\d{4}-\d{2}-\d{2})/); if (m) hoy = Date.parse(m[1] + 'T00:00:00Z');
+  const sem = Math.floor((hoy - base) / (7 * DIA));
+  const larga = t => new Date(t).toLocaleDateString('es-MX', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
+  const i = Math.max(0, sem) % RETOS.lista.length;
+  c.textContent = RETOS.lista[i];
+  document.getElementById('reto-semana').textContent = sem < 0 ? 'Empieza este domingo' : 'Reto ' + (sem + 1);
+  document.getElementById('reto-fecha').textContent = larga(base + Math.max(0, sem) * 7 * DIA);
+})();
+
+/* Sábado: la cinta del inicio descansa, como Yoshi */
+(function () {
+  const c = document.querySelector('.cinta'); if (!c) return;
+  if (hoyMty().dia === 'Sat' || /prueba-sabado/.test(location.hash)) c.classList.add('sabado');
 })();

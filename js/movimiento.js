@@ -1,5 +1,5 @@
 /* Domingo · movimiento del sitio
-   Tipografía cinética, revelado al desplazar, paralaje, inclinación 3D y microinteracciones.
+   Tipografía que aparece como tinta, revelado lento, paralaje, inclinación y Yoshi, que sale cuando te detienes.
    No hace nada si la persona pidió reducir movimiento en su sistema. */
 (function () {
   const raiz = document.documentElement;
@@ -26,7 +26,7 @@
         });
         h.replaceWith(frag);
       } else if (h.nodeType === 1 && h.tagName !== 'SVG' && !h.classList.contains('trazo')) {
-        if (h.tagName === 'EM') {
+        if (h.tagName === 'EM' || h.classList.contains('borrador')) {
           /* "domingo" se mueve como una sola palabra, con su trazo */
           const k = document.createElement('span'); k.className = 'k';
           const i = document.createElement('span'); i.className = 'ki'; i.style.setProperty('--i', n++);
@@ -50,29 +50,15 @@
   });
   $$('.hito').forEach((h, i) => h.style.setProperty('--d', (300 + i * 180) + 'ms'));
   $$('.menu li').forEach((li, i) => li.style.setProperty('--d', (i * 70) + 'ms'));
-  const vigilar = $$('.aparece, .kin, .filete, .hitos, .hito, .menu, [data-cuenta]');
+  const vigilar = $$('.aparece, .kin, .filete, .hitos, .hito, .menu');
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     const el = e.target;
     el.classList.add('visto');
     if (el.classList.contains('kin')) el.classList.add('k-on');
-    if (el.hasAttribute('data-cuenta')) contar(el);
     io.unobserve(el);
   }), { threshold: .15, rootMargin: '0px 0px -6% 0px' });
   vigilar.forEach(el => io.observe(el));
-
-  /* ---------- Números que cuentan ---------- */
-  function contar(el) {
-    const fin = parseInt(String(el.textContent).replace(/[^\d]/g, ''), 10);
-    if (!fin) return;
-    const t0 = performance.now(), dur = Math.min(1400, 500 + fin * 2);
-    const miles = /,/.test(el.textContent);
-    (function paso(t) {
-      const k = Math.min(1, (t - t0) / dur), v = Math.round(fin * (1 - Math.pow(1 - k, 3)));
-      el.textContent = miles ? v.toLocaleString('en-US') : String(v);
-      if (k < 1) requestAnimationFrame(paso);
-    })(t0);
-  }
 
   /* ---------- Paralaje y avance de lectura ---------- */
   const prog = document.querySelector('.progreso');
@@ -102,7 +88,7 @@
     filas.forEach((f, i) => {
       const r = f.getBoundingClientRect();
       if (r.bottom < 0 || r.top > h) return;
-      const d = (h - r.top) * 0.35;
+      const d = (h - r.top) * 0.2;
       f.style.transform = 'translate3d(' + (i % 2 ? d - 600 : -d) + 'px,0,0)';
     });
   }
@@ -140,7 +126,7 @@
     el.addEventListener('pointerleave', () => { el.classList.remove('sobre'); el.style.setProperty('--tx', '0deg'); el.style.setProperty('--ty', '0deg'); });
   });
 
-  /* ---------- Botones: onda al pulsar e imán ---------- */
+  /* ---------- Botones: una onda suave al pulsar ---------- */
   document.addEventListener('pointerdown', e => {
     const b = e.target.closest('.boton'); if (!b) return;
     const r = b.getBoundingClientRect(), s = Math.max(r.width, r.height) * 2.2;
@@ -148,17 +134,58 @@
     o.style.cssText = 'width:' + s + 'px;height:' + s + 'px;left:' + (e.clientX - r.left - s / 2) + 'px;top:' + (e.clientY - r.top - s / 2) + 'px';
     b.appendChild(o); setTimeout(() => o.remove(), 650);
   });
-  $$('.portada .acciones .boton, .cabeza .acciones .boton, .lite .acciones .boton').forEach(b => {
-    b.classList.add('iman');
-    b.addEventListener('pointermove', e => {
-      const r = b.getBoundingClientRect();
-      b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .18).toFixed(1) + 'px,' + ((e.clientY - r.top - r.height / 2) * .3).toFixed(1) + 'px)';
-    });
-    b.addEventListener('pointerleave', () => { b.style.transform = ''; });
-  });
 
   /* ---------- Misi salta si lo tocas ---------- */
   const misi = document.querySelector('.escena .misi');
   if (misi) misi.addEventListener('click', () => { misi.classList.remove('salta'); void misi.offsetWidth; misi.classList.add('salta'); });
   if (misi) misi.addEventListener('animationend', e => { if (e.animationName === 'salta') misi.classList.remove('salta'); });
+})();
+
+/* Yoshi se asoma cuando te detienes.
+   Si nadie desplaza, mueve el cursor, toca o teclea durante unos segundos, su carro entra por la esquina
+   y Yoshi sale. Al primer movimiento corre a esconderse. Funciona también con movimiento reducido, sin animación. */
+(function () {
+  const raiz = document.documentElement;
+  const R = raiz.dataset.raiz || '';
+  const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ESPERA = 10000, DUERME = 30000;
+  const y = document.createElement('div');
+  y.className = 'yoshi-quieto'; y.setAttribute('aria-hidden', 'true');
+  y.innerHTML = '<img class="carro" src="' + R + 'img/companeros/carro.png" width="46" height="24" alt="">' +
+    '<img class="gato" src="' + R + 'img/companeros/k_sit0.png" width="32" height="30" alt="">' +
+    '<div class="nota-y">Yoshi solo sale cuando te detienes</div>';
+  document.body.appendChild(y);
+  const gato = y.querySelector('.gato'), nota = y.querySelector('.nota-y');
+  const img = n => R + 'img/companeros/' + n;
+  let t1 = 0, t2 = 0, t3 = 0, fuera = false, vecesNota = 0;
+  try { vecesNota = +sessionStorage.getItem('yoshi-nota') || 0; } catch (e) {}
+  if (reducir) y.querySelectorAll('img,.nota-y').forEach(e => (e.style.transition = 'none'));
+
+  function salir() {
+    if (document.hidden || document.querySelector('dialog[open]')) return programar();
+    fuera = true;
+    gato.src = img('n_Yoshi_walk0.png');
+    y.classList.remove('huye'); y.classList.add('llega');
+    t2 = setTimeout(() => {
+      y.classList.add('sale');
+      if (vecesNota < 2) { nota.classList.add('ver'); vecesNota++; try { sessionStorage.setItem('yoshi-nota', vecesNota); } catch (e) {} }
+      setTimeout(() => { if (fuera) gato.src = img('k_sit0.png'); }, reducir ? 0 : 1200);
+      t3 = setTimeout(() => { if (fuera) { gato.src = img('k_sleep0.png'); nota.classList.remove('ver'); } }, DUERME - ESPERA);
+    }, reducir ? 0 : 1100);
+  }
+  function esconder() {
+    clearTimeout(t2); clearTimeout(t3);
+    if (!fuera) return;
+    fuera = false;
+    gato.src = img('n_Yoshi_walk0.png');
+    y.classList.add('huye'); y.classList.remove('sale');
+    nota.classList.remove('ver');
+    setTimeout(() => { if (!fuera) y.classList.remove('llega', 'huye'); }, reducir ? 0 : 700);
+  }
+  function programar() { clearTimeout(t1); t1 = setTimeout(salir, ESPERA); }
+  function actividad() { esconder(); programar(); }
+  ['scroll', 'pointermove', 'pointerdown', 'keydown', 'touchstart', 'wheel'].forEach(ev => addEventListener(ev, actividad, { passive: true }));
+  document.addEventListener('visibilitychange', actividad);
+  programar();
+  window.__yoshi = { salir, esconder };
 })();
